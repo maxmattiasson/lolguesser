@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.champ-icon {
+    height: 100px;
+    width: 100px;
+}
+
+.info-cont {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    font-size: 1rem;
+    border: 1px black solid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.guess-row {
+    display: flex;
+    max-width: 800px;
+    flex-flow: row wrap;
+    align-items: center;    
+}
