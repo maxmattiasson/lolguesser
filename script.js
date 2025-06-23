@@ -9,8 +9,6 @@ let champList = [];
 async function getChampList(){
     const res = await fetch('champions.json');
     champList = await res.json();
-    console.log(champList); 
-
 }
 getChampList();
 
@@ -21,7 +19,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 async function getDailyChampion() {
   try {
-    const res = await fetch('http://localhost:3000/api/champion/daily');
+    const res = await fetch('https://lolguesser-backend.onrender.com/api/champion/daily');
     target = await res.json();
     console.log('champion from backend:', target);
   } catch (err) {
