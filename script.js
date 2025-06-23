@@ -7,8 +7,10 @@ let target;
 let champList = [];
 
 async function getChampList(){
-    const res = await fetch('lolguesser-backend/champions.json');
+    const res = await fetch('champions.json');
     champList = await res.json();
+    console.log(champList); 
+
 }
 getChampList();
 
@@ -21,7 +23,7 @@ async function getDailyChampion() {
   try {
     const res = await fetch('http://localhost:3000/api/champion/daily');
     target = await res.json();
-    console.log('Daily champion from backend:', target);
+    console.log('champion from backend:', target);
   } catch (err) {
     console.error('Error fetching daily champion:', err);
   }
