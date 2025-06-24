@@ -5,6 +5,7 @@ const guessContainer = document.getElementById('guessContainer');
 
 let target;
 let champList = [];
+let alreadyGuessed = [];
 
 async function getChampList(){
     const res = await fetch('champions.json');
@@ -45,8 +46,17 @@ confirmInput.addEventListener('click', () => {
     const champ = champList.find(c => cleanString(c.name) === guess);
     if (!champ) return;
 
+    if (!alreadyGuessed.includes(champ)) {alreadyGuessed.push(champ)} else return;
+      
+    guessInput.value = '';
+
+    if (champ.name === target.name) {
+      winnerScreen();
+    }
+
     const row = makeGuessRow(champ);
     compareGuess(champ, row);
+  
 })
 
 function cleanString(str){
@@ -56,9 +66,10 @@ function cleanString(str){
 }
 
 function makeGuessRow(champ){
+
     const guessRow = document.createElement('div');
     guessRow.classList.add('guess-row');
-    guessContainer.appendChild(guessRow);
+    guessContainer.prepend(guessRow);
 
     const img = document.createElement('img');
     img.src = champ.icon;
@@ -105,5 +116,22 @@ const partialMatch = guessArr.some(val => targetArr.includes(val));
   } else {
     div.style.backgroundColor = 'red';
   }
+} 
 }
+
+function winnerScreen() {
+  const jsConfetti = new JSConfetti();
+  jsConfetti.addConfetti({
+    emojis: ["👑", "💯", "💦", "😤"],
+    emojiSize: 50,
+    confettiNumber: 200,
+    confettiColors: [
+      "#ff0a54",
+      "#ff477e",
+      "#ff7096",
+      "#ff85a1",
+      "#fbb1bd",
+      "#f9bec7",
+    ],
+  });
 }

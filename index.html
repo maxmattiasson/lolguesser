@@ -5,20 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lolguess</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+
 </head>
 <body>
-<div class="headers">
- <div id="logo">GISSA</div>
- <div id="login">login</div>
- <div id="blabla"></div>
-</div>
-  
-<input type="text" id="guessInput" placeholder="Skriv din gissning">
-<button id="confirmInput">Bekräfta</button>
-<div id="champInfo"></div>
-<div id="guessContainer"></div>
+    <div class="background-blur"></div>
 
-    
+<div class="headers">
+ <h1 id="logo">💦LoLgiss</h1>
+ <button id="login">login</button>
+ <div id="spacer"></div>
+</div>
+
+<div class="guess-input">
+    <input type="text" id="guessInput" placeholder="Skriv din gissning">
+    <button id="confirmInput">Bekräfta</button>
+</div>
+<div class="guess-main">
+    <div id="champInfo"></div>
+    <div id="guessContainer"></div>
+</div>
+<p class="dontsueme">“League of Legends assets are © Riot Games. This is a fan-made project not affiliated with Riot Games.”</p>
+<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

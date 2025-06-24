@@ -4,9 +4,32 @@
     box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
+body {
+ /*   background-image: url('images/lolguessbg.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat; */
+    height: 100vh;  
+
+    overflow: hidden;
+    position: relative;
+
+}
+.guess-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .champ-icon {
     height: 100px;
     width: 100px;
+    border-radius: 10px;
 }
 
 .info-cont {
@@ -14,15 +37,67 @@
     width: 100px;
     display: flex;
     font-size: 1rem;
-    border: 1px black solid;
+    border: 3px black solid;
+    border-radius: 10px;
     align-items: center;
     justify-content: center;
     text-align: center;
+    
 }
 
 .guess-row {
     display: flex;
-    max-width: 800px;
+    max-width: 900px;
     flex-flow: row wrap;
-    align-items: center;    
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    background-color: black;
+}
+.guess-input {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+.background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('images/lolguessbg.jpg');
+  background-size: cover;
+  background-position: top center;
+  filter: blur(1px) brightness(0.7);  /* 👈 blur + dimming combo */
+  z-index: -1;  /* put it behind everything */
+}
+
+.headers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+
+#spacer {
+    height: 40px;
+}
+
+.dontsueme {
+  position: fixed;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#login {
+    position: absolute;
+    right: 20px;   
 }
