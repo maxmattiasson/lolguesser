@@ -57,7 +57,9 @@ body {
 .guess-input {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 50px;
+    gap: 10px;
 }
 
 .background-blur {
@@ -101,3 +103,40 @@ body {
     position: absolute;
     right: 20px;   
 }
+
+#confirmInput {
+    border: 10px black double;
+    outline: none;
+    background: #AE75A7;
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    font-size: 2rem;
+}
+#confirmInput:hover {
+    background: #ad81a8;
+}
+
+#guessInput {
+    height: 40px;
+    padding: 10px;
+    border: 3px black solid;
+    border-radius: 5px;
+    box-shadow: none;
+}
+#guessInput:focus {
+    outline: none;
+    border: 3px black solid;
+    box-shadow: 0 0 5px 3px #69EAFF 
+}
+
+#logo {
+  font-size: 4rem;
+  color: white;
+    -webkit-text-stroke: 3px black;
+  font-family: "Luckiest Guy";
+  font-weight: 400;
+  font-style: normal;
+
+}
+

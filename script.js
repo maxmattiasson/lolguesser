@@ -28,22 +28,25 @@ async function getDailyChampion() {
   }
 }
 
-/* OLD LOCAL SETTING TARGET REPLACED BY BACKEND 
-window.addEventListener('DOMContentLoaded', async () => {
-  await getChampList();
-  target = setTarget();
-  console.log(target.name);
-});
-
-function setTarget(){
-    const targetNum = Math.floor(Math.random()*champList.length);
-    return champList[targetNum];
-}
-*/
 confirmInput.addEventListener('click', () => {
     const rawGuess = guessInput.value;
     const guess = cleanString(rawGuess);
-    const champ = champList.find(c => cleanString(c.name) === guess);
+    const checkChamp = () => {
+      // 1. Does it match nicknames or hardcoded str.length === 2
+        for (const [key, value] of Object.entries(champMapper)) {
+          if (guess === key) return champList.find(c => c.name === value);
+        } 
+      if (guess.length >= 3) {
+        for (let c of champList) {
+          let name = c.name;
+          if (cleanString(name).startsWith(guess)){
+          return c;
+         }
+       }
+      }
+    }
+    const champ = checkChamp();
+
     if (!champ) return;
 
     if (!alreadyGuessed.includes(champ)) {alreadyGuessed.push(champ)} else return;
@@ -52,11 +55,11 @@ confirmInput.addEventListener('click', () => {
 
     if (champ.name === target.name) {
       winnerScreen();
+      guessInput.disabled = true;
     }
 
     const row = makeGuessRow(champ);
     compareGuess(champ, row);
-  
 })
 
 function cleanString(str){
@@ -117,7 +120,30 @@ const partialMatch = guessArr.some(val => targetArr.includes(val));
     div.style.backgroundColor = 'red';
   }
 } 
+
 }
+const champMapper = {
+  mf: "Miss Fortune",
+  gp: "Gangplank",
+  ez: "Ezreal",
+  vi: "Vi",
+  mumu: "Amumu",
+  asol : "Aurelion Sol",
+  bv: "Bel'Veth",
+  mundo: "Dr. Mundo",
+  j4: "Jarvan IV",
+  k6: "Kha'Zix",
+  lb: "LeBlanc",
+  yi: "Master Yi",
+  ok: "Rammus",
+  glasc: "Renata Glasc",
+  rg: "Renata Glasc",
+  tk: "Tahm Kench",
+  tf: "Twisted Fate",
+  vk: "Vel'Koz",
+  ww: "Warwick",
+  wu: "Wukong",
+};
 
 function winnerScreen() {
   const jsConfetti = new JSConfetti();
@@ -135,3 +161,11 @@ function winnerScreen() {
     ],
   });
 }
+
+document.addEventListener("keydown", (e) => {
+  if (
+    (e.key === "Enter")
+  ) {
+    confirmInput.click();
+  }
+});
