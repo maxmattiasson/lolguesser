@@ -58,7 +58,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px;
+    padding: 40px;
     gap: 10px;
 }
 
@@ -138,5 +138,27 @@ body {
   font-weight: 400;
   font-style: normal;
 
+}
+
+#guessContainer {
+    max-height: 60vh;     
+    overflow-y: auto;   
+    padding-right: 8px;
+    
+}
+
+#guessContainer::-webkit-scrollbar {
+    width: 10px;
+}
+        
+#guessContainer::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: #e7e7e72d;
+    border: 1px solid #363636;
+}
+        
+#guessContainer::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #363636;
 }
 
