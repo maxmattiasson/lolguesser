@@ -166,3 +166,7 @@ body {
 .animate-in {
     opacity: 1;
 }
+
+#server-status {
+    text-align: center;
+}

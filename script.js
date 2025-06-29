@@ -2,6 +2,7 @@
 const confirmInput = document.getElementById('confirmInput');
 const guessInput = document.getElementById('guessInput');
 const guessContainer = document.getElementById('guessContainer');
+const serverStatus = document.getElementById('server-status');
 
 
 let target;
@@ -14,7 +15,6 @@ async function getChampList(){
     champList = await res.json();
 }
 getChampList();
-
 window.addEventListener('DOMContentLoaded', async () => {
   await getChampList();
   await getDailyChampion();
@@ -25,6 +25,7 @@ async function getDailyChampion() {
     const res = await fetch('https://lolguesser-backend.onrender.com/api/champion/daily');
     target = await res.json();
     console.log('champion from backend:', target);
+    checkServer();
   } catch (err) {
     console.error('Error fetching daily champion:', err);
   }
@@ -183,4 +184,20 @@ function addAnimation(){
     cont.classList.add('animate-in');
   }, i * 500);
 });
+}
+
+function checkServer(){
+  if (!target || typeof target !== "object" || !target.name) {
+    serverStatus.textContent = "Servern håller på att vakna, redo om några sekunder ...";
+    serverStatus.style.color = 'Yellow';
+    guessInput.disabled = true;
+  } else {
+    serverStatus.textContent = "Redo!";
+    serverStatus.style.color = "lightgreen";
+    guessInput.disabled = false;
+  }
+}
+
+function showReleaseYear(){
+  
 }
