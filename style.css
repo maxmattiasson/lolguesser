@@ -38,11 +38,12 @@ body {
     display: flex;
     font-size: 1rem;
     border: 3px black solid;
-    border-radius: 10px;
+    border-radius: 20px;
     align-items: center;
     justify-content: center;
     text-align: center;
-    
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
 }
 
 .guess-row {
@@ -162,3 +163,6 @@ body {
     background-color: #363636;
 }
 
+.animate-in {
+    opacity: 1;
+}

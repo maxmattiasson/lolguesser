@@ -3,9 +3,11 @@ const confirmInput = document.getElementById('confirmInput');
 const guessInput = document.getElementById('guessInput');
 const guessContainer = document.getElementById('guessContainer');
 
+
 let target;
 let champList = [];
 let alreadyGuessed = [];
+let stopGame = false;
 
 async function getChampList(){
     const res = await fetch('champions.json');
@@ -54,7 +56,8 @@ confirmInput.addEventListener('click', () => {
     guessInput.value = '';
 
     if (champ.name === target.name) {
-      winnerScreen();
+      setTimeout(() => {
+      winnerScreen()}, 3500);
       guessInput.disabled = true;
     }
 
@@ -79,6 +82,7 @@ function makeGuessRow(champ){
     img.alt = champ.name; 
     img.classList.add('champ-icon');
     guessRow.appendChild(img);
+    guessContainer.scrollTop = 0;
 
     const skip = ['icon', 'name']
     for (const [key, value] of Object.entries(champ)) {
@@ -92,6 +96,7 @@ function makeGuessRow(champ){
             divInfo.textContent = value.join(', ')
         } else {divInfo.textContent = value}
     }
+    addAnimation();
     return guessRow;
 }
 
@@ -169,3 +174,13 @@ document.addEventListener("keydown", (e) => {
     confirmInput.click();
   }
 });
+
+
+function addAnimation(){
+  const timeAnimation = document.querySelectorAll('.info-cont');
+  timeAnimation.forEach((cont, i) => {
+  setTimeout(() => {
+    cont.classList.add('animate-in');
+  }, i * 500);
+});
+}
