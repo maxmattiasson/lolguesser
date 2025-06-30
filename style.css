@@ -201,12 +201,12 @@ body {
         max-width: 95vw;
         flex-wrap: nowrap;
         gap: 0px;
-        padding-left: 0%;
+        padding-left: 0px;
     }
     .champ-icon {
         height: 5vh;
         width: 10vw;
-        padding-right: 5px;
+        padding-right: 0px;
     }
     .info-cont {
         display: flex;
@@ -216,7 +216,5 @@ body {
         border: 1px black solid;
         border-radius: 3px;
         gap: 0px;
-        flex: 1;
-        overflow: auto;
     }
 }
