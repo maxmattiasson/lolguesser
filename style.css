@@ -198,16 +198,25 @@ body {
 }
     .guess-row {
         background-color: transparent;
-        overflow-x: auto;
         max-width: 95vw;
+        flex-wrap: nowrap;
+        gap: 0px;
+        padding-left: 0%;
     }
     .champ-icon {
-        height: 10vh;
-        width: 15vw;
+        height: 5vh;
+        width: 10vw;
+        padding-right: 5px;
     }
     .info-cont {
-        width: 60px;
-        height: 60px;
-        font-size: large;
+        display: flex;
+        min-width: 50px;
+        max-height: 50px;
+        font-size: 0.8rem;
+        border: 1px black solid;
+        border-radius: 3px;
+        gap: 0px;
+        flex: 1;
+        overflow: auto;
     }
 }
