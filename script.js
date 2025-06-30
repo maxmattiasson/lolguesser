@@ -9,6 +9,8 @@ let target;
 let champList = [];
 let alreadyGuessed = [];
 let stopGame = false;
+guessInput.disabled = true;
+
 
 async function getChampList(){
     const res = await fetch('champions.json');
@@ -196,8 +198,4 @@ function checkServer(){
     serverStatus.style.color = "lightgreen";
     guessInput.disabled = false;
   }
-}
-
-function showReleaseYear(){
-  
 }
