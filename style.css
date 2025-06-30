@@ -201,12 +201,12 @@ body {
         flex-wrap: nowrap;
         gap: 0px;
         padding-left: 0px;
-    }
+}
     .champ-icon {
         height: 4vh;
         width: 8vw;
         padding-right: 0px;
-    }
+}
     .info-cont {
         display: flex;
         min-width: 50px;
@@ -215,11 +215,19 @@ body {
         border: 1px black solid;
         border-radius: 3px;
         gap: 0px;
-    }
+}
     .guess-input {
     font-size: 16px;
-    }
+}
     #guessContainer::-webkit-scrollbar {
     display: none;
+}
+    html, body {
+    overflow: auto;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+} 
+    body * {
+    touch-action: auto;
     }
 }
