@@ -20,7 +20,6 @@ body {
     background-position: top center;
     background-repeat: no-repeat; */
     height: 100vh;  
-
     overflow: hidden;
     position: relative;
 
@@ -192,20 +191,20 @@ body {
 
 @media (max-width: 700px) {
     #guessContainer {
-    max-width: 95vw;     
+    max-width: 98vw;     
     overflow-x: auto;   
     padding-right: 8px;
 }
     .guess-row {
         background-color: transparent;
-        max-width: 95vw;
+        max-width: 98vw;
         flex-wrap: nowrap;
         gap: 0px;
         padding-left: 0px;
     }
     .champ-icon {
-        height: 5vh;
-        width: 10vw;
+        height: 4vh;
+        width: 8vw;
         padding-right: 0px;
     }
     .info-cont {
@@ -216,5 +215,11 @@ body {
         border: 1px black solid;
         border-radius: 3px;
         gap: 0px;
+    }
+    .guess-input {
+    font-size: 16px;
+    }
+    #guessContainer::-webkit-scrollbar {
+    display: none;
     }
 }
