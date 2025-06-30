@@ -48,6 +48,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    flex-direction: column;
     opacity: 0;
     transition: opacity 0.5s ease-in;
     color: black;
@@ -156,7 +157,6 @@ body {
     max-height: 60vh;     
     overflow-y: auto;   
     padding-right: 8px;
-    
 }
 
 #guessContainer::-webkit-scrollbar {
@@ -187,7 +187,27 @@ body {
   height: 0;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
-  border-bottom: 30px solid limegreen;
-  margin: 20px auto;
-  transition: border-bottom-color 0.3s ease;
+  border-bottom: 30px solid rgb(129, 18, 18);
+}
+
+@media (max-width: 700px) {
+    #guessContainer {
+    max-width: 95vw;     
+    overflow-x: auto;   
+    padding-right: 8px;
+}
+    .guess-row {
+        background-color: transparent;
+        overflow-x: auto;
+        max-width: 95vw;
+    }
+    .champ-icon {
+        height: 10vh;
+        width: 15vw;
+    }
+    .info-cont {
+        width: 60px;
+        height: 60px;
+        font-size: large;
+    }
 }

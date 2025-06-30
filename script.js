@@ -117,6 +117,19 @@ for (let key of keys) {
 const guessArr = Array.isArray(guessValue) ? [...guessValue].sort() : [guessValue];
 const targetArr = Array.isArray(targetValue) ? [...targetValue].sort() : [targetValue];
 
+  if (key === 'releaseYear') {
+    if (guessValue > targetValue) {
+    const test = document.createElement('div');
+    test.classList.add('arrowup');
+    test.style.transform = "rotate(180deg)";
+    div.appendChild(test);
+  } else if (guessValue < targetValue) {
+    const test = document.createElement('div');
+    test.classList.add('arrowup');
+    div.prepend(test);
+  } else {div.style.backgroundColor = 'green'}
+}
+
 const fullMatch = JSON.stringify(guessArr) === JSON.stringify(targetArr);
 const partialMatch = guessArr.some(val => targetArr.includes(val));
 
@@ -127,9 +140,9 @@ const partialMatch = guessArr.some(val => targetArr.includes(val));
   } else {
     div.style.backgroundColor = 'red';
   }
-} 
+ }
+  }
 
-}
 const champMapper = {
   mf: "Miss Fortune",
   gp: "Gangplank",
