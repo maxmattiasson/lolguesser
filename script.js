@@ -60,8 +60,8 @@ confirmInput.addEventListener('click', () => {
 
     if (champ.name === target.name) {
       setTimeout(() => {
-      winnerScreen()}, 3500);
       guessInput.disabled = true;
+      winnerScreen()}, 3500);
     }
 
     const row = makeGuessRow(champ);

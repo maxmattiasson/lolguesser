@@ -220,13 +220,16 @@ body {
 }
     .guess-input {
     font-size: 16px;
+    width: 100%;
+    max-width: 600px;
 }
     #guessContainer::-webkit-scrollbar {
     display: none;
 }
     html, body {
-    overflow: auto;
-    height: 100%;
+    overflow-y: auto !important;
+    height: auto;
+    overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
 } 
     body * {
