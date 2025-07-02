@@ -3,6 +3,10 @@ const confirmInput = document.getElementById('confirmInput');
 const guessInput = document.getElementById('guessInput');
 const guessContainer = document.getElementById('guessContainer');
 const serverStatus = document.getElementById('server-status');
+const loginPage = document.getElementById('login-page');
+const gamePage = document.getElementById('game-container');
+const passwordField = document.getElementById('password-field');
+const passwordField2 = document.getElementById('password-field2');
 
 
 let target;
@@ -11,6 +15,7 @@ let alreadyGuessed = [];
 let stopGame = false;
 guessInput.disabled = true;
 
+showGame();
 
 async function getChampList(){
     const res = await fetch('champions.json');
@@ -212,3 +217,54 @@ function checkServer(){
     guessInput.disabled = false;
   }
 }
+
+login.addEventListener('click', showLogin);
+
+document.getElementById('return-game').addEventListener('click', showGame);
+
+document.getElementById('sign-log').addEventListener('click', () => {
+  if (loadLogin) {
+    showLogin();
+  } else {
+    showSignup();
+  }
+})
+
+let loadLogin = true;
+
+document.getElementById('eye').addEventListener('click', () => {
+  if (passwordField.type === 'password') {
+    passwordField.type = 'text';
+    passwordField2.type = 'text';
+  } else if (passwordField.type === 'text'){
+    passwordField.type = 'password';
+    passwordField2.type = 'password';
+  }
+})
+
+function showLogin(){
+  gamePage.style.display = 'none';
+  loginPage.style.display = 'flex';
+  document.getElementById('password-field2').style.display = 'none';
+  document.getElementById('login-head').textContent = 'Log in';
+  document.getElementById('sign-log').textContent = `Don't have an account? Sign up by clicking here`;
+  loadLogin = false;
+}
+
+function showSignup(){
+  document.getElementById('password-field2').style.display = 'block';  
+  document.getElementById('login-head').textContent = 'Create account';
+  document.getElementById('sign-log').textContent = `Already have an account? Log in by clicking here`;
+  loadLogin = true;
+}
+
+function showGame(){
+  loginPage.style.display = 'none';
+  gamePage.style.display = 'block';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && gamePage.style.display === 'none') {
+    showGame();
+  }
+});

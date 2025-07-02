@@ -10,7 +10,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background-blur"></div>
+<div class="background-blur"></div>
+<div id="game-container">
+
 
 <div class="headers">
  <h1 id="logo">Lolgiss</h1>
@@ -32,6 +34,22 @@
     <div id="champInfo"></div>
     <div id="guessContainer"></div>
 </div>
+</div>
+<div id="login-wrapper">
+    <div id="login-page">
+        <div id="login-head"></div>
+        <input type="text" id="username-field" placeholder="Username">
+            <div id="password-wrap">
+            <input type="password" id="password-field" placeholder="Password"> <button id="eye">👁️</button></div>
+            <input type="password" id="password-field2" placeholder="Repeat Password">
+        
+        <button id="login-btn">Submit</button>
+        <button id="sign-log"></button>
+        <button id="return-game">Go back to game</button>
+
+    </div>
+</div>
+
 <p class="dontsueme">“League of Legends assets are © Riot Games. This is a fan-made project not affiliated with Riot Games.”</p>
 <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 <script src="script.js"></script>
