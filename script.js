@@ -7,6 +7,7 @@ const loginPage = document.getElementById('login-page');
 const gamePage = document.getElementById('game-container');
 const passwordField = document.getElementById('password-field');
 const passwordField2 = document.getElementById('password-field2');
+const usernameField = document.getElementById('username-field');
 
 
 let target;
@@ -243,6 +244,8 @@ document.getElementById('eye').addEventListener('click', () => {
 })
 
 function showLogin(){
+  passwordField.value = '';
+  passwordField2.value = '';
   gamePage.style.display = 'none';
   loginPage.style.display = 'flex';
   document.getElementById('password-field2').style.display = 'none';
@@ -252,6 +255,8 @@ function showLogin(){
 }
 
 function showSignup(){
+  passwordField.value = '';
+  passwordField2.value = '';
   document.getElementById('password-field2').style.display = 'block';  
   document.getElementById('login-head').textContent = 'Create account';
   document.getElementById('sign-log').textContent = `Already have an account? Log in by clicking here`;
@@ -268,3 +273,33 @@ document.addEventListener('keydown', (e) => {
     showGame();
   }
 });
+
+document.getElementById('login-btn').addEventListener('click', () => {
+  if (loadLogin) {
+    signUp();
+  } else logIn();
+  }
+)
+
+function signUp(){
+let username = usernameField.value;
+const usernameRegex = /^[a-zA-Z0-9]{3,15}$/;
+if (!usernameRegex.test(username)) {
+  showError("Username must be 3–15 letters or numbers, no symbols or spaces.");
+  }
+}
+function logIn(){
+
+}
+
+
+
+function showError(message){
+  let errMessage = document.querySelector('.error-message');
+  errMessage.textContent = message;
+  errMessage.style.display = 'block';
+
+  usernameField.addEventListener('input', () => {
+  errMessage.style.display = 'none';
+})
+}

@@ -230,6 +230,14 @@ input {
     position: absolute;
 }
 
+.error-message{
+    display: none;
+    color: red;
+    padding: 10px;
+    font-weight: 800;
+    text-align: center;
+}
+
 /* 
 ---------------------------------
     MOBILE SETTINGS BELOW
