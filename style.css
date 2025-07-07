@@ -213,6 +213,10 @@ body {
     gap: 10px;
 }
 
+form {
+  display: contents;
+}
+
 #login-head {
     font-family: "Luckiest Guy";
     color: white;

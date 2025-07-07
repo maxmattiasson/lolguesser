@@ -3,12 +3,11 @@ const confirmInput = document.getElementById('confirmInput');
 const guessInput = document.getElementById('guessInput');
 const guessContainer = document.getElementById('guessContainer');
 const serverStatus = document.getElementById('server-status');
-const loginPage = document.getElementById('login-page');
+const loginPage = document.getElementById('login-wrapper');
 const gamePage = document.getElementById('game-container');
 const passwordField = document.getElementById('password-field');
 const passwordField2 = document.getElementById('password-field2');
 const usernameField = document.getElementById('username-field');
-
 
 let target;
 let champList = [];
@@ -59,9 +58,7 @@ confirmInput.addEventListener('click', () => {
     const champ = checkChamp();
 
     if (!champ) return;
-
     if (!alreadyGuessed.includes(champ)) {alreadyGuessed.push(champ)} else return;
-      
     guessInput.value = '';
 
     if (champ.name === target.name) {
@@ -69,7 +66,6 @@ confirmInput.addEventListener('click', () => {
       guessInput.disabled = true;
       winnerScreen()}, 3500);
     }
-
     const row = makeGuessRow(champ);
     compareGuess(champ, row);
 })
@@ -191,7 +187,7 @@ function winnerScreen() {
 
 document.addEventListener("keydown", (e) => {
   if (
-    (e.key === "Enter")
+    (e.key === "Enter" && location.search === "?screen=game")
   ) {
     confirmInput.click();
   }
@@ -246,6 +242,7 @@ document.getElementById('eye').addEventListener('click', () => {
 function showLogin(){
   passwordField.value = '';
   passwordField2.value = '';
+  history.pushState({ screen: 'login' }, '', '?screen=login');
   gamePage.style.display = 'none';
   loginPage.style.display = 'flex';
   document.getElementById('password-field2').style.display = 'none';
@@ -264,6 +261,7 @@ function showSignup(){
 }
 
 function showGame(){
+  history.pushState({ screen: 'game' }, '', '?screen=game');
   loginPage.style.display = 'none';
   gamePage.style.display = 'block';
 }
@@ -274,32 +272,55 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-document.getElementById('login-btn').addEventListener('click', () => {
+document.getElementById('login-btn').addEventListener('click', (e) => {
+  e.preventDefault();
+
   if (loadLogin) {
     signUp();
   } else logIn();
   }
 )
 
+
 function signUp(){
-let username = usernameField.value;
+let username = usernameField.value.trim();
+const password1 = passwordField.value;
+const password2 = passwordField2.value;
+
+if (password1 === password2 && password1.length > 5) {
+  console.log("Password approved!");
+} else {
+  showError("Passwords must match and be at least 6 characters.");
+}
+
 const usernameRegex = /^[a-zA-Z0-9]{3,15}$/;
 if (!usernameRegex.test(username)) {
-  showError("Username must be 3–15 letters or numbers, no symbols or spaces.");
+  showError("Username must be 3-15 letters or numbers, no symbols or spaces.");
   }
 }
+
 function logIn(){
 
 }
-
-
 
 function showError(message){
   let errMessage = document.querySelector('.error-message');
   errMessage.textContent = message;
   errMessage.style.display = 'block';
 
-  usernameField.addEventListener('input', () => {
-  errMessage.style.display = 'none';
-})
-}
+[usernameField, passwordField, passwordField2].forEach(field => {
+  field.addEventListener('input', () => {
+    errMessage.style.display = 'none';
+  });
+});
+};
+
+window.addEventListener("popstate", () => {
+  if (location.search === "?screen=login") {
+    loginPage.style.display = "flex";
+    gamePage.style.display = "none";
+  } else {
+    gamePage.style.display = "block";
+    loginPage.style.display = "none";
+  }
+});
