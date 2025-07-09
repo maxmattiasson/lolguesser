@@ -44,10 +44,11 @@ async function sendGuess(guessedChamp, row) {
     const res = await fetch('https://lolguesser-backend.onrender.com/api/guess', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(guessedChamp)  
+      body: JSON.stringify(guessedChamp)
     });
 
     const data = await res.json();
+  console.log("sendGuess called!");
 
     compareServerFeedback(data.feedback, row);
 
