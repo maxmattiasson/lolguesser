@@ -5,8 +5,9 @@ const guessContainer = document.getElementById('guessContainer');
 const serverStatus = document.getElementById('server-status');
 const loginPage = document.getElementById('login-wrapper');
 const gamePage = document.getElementById('game-container');
-const passwordField = document.getElementById('password-field');
-const passwordField2 = document.getElementById('password-field2');
+const passwordField = document.getElementById('signup-password');
+const passwordField2 = document.getElementById('signup-password2');
+const loginPassword = document.getElementById('login-password')
 const usernameField = document.getElementById('username-field');
 
 let target;
@@ -37,7 +38,22 @@ async function getDailyChampion() {
     console.error('Error fetching daily champion:', err);
   }
 }
+/*
+async function sendGuess(guessedChamp, row) {
+  try {
+    const res = await fetch('https://lolguesser-backend.onrender.com/api/guess', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(guessedChamp)
+    });
 
+    const data = await res.json();
+    compareGuess(data.feedback, row); // <-- updated!
+  } catch (err) {
+    console.error('Guess failed:', err);
+  }
+}
+*/
 confirmInput.addEventListener('click', () => {
     const rawGuess = guessInput.value;
     const guess = cleanString(rawGuess);
@@ -104,7 +120,33 @@ function makeGuessRow(champ){
     addAnimation();
     return guessRow;
 }
+/*function compareGuess(feedback, row) {
+  const keys = Object.keys(feedback);
 
+  for (let key of keys) {
+    const div = row.querySelector(`[data-type="${key}"]`);
+    if (!div) continue;
+
+    const style = feedback[key];
+
+    if (style === 'green') {
+      div.style.backgroundColor = 'green';
+    } else if (style === 'yellow') {
+      div.style.backgroundColor = 'yellow';
+    } else if (style === 'red') {
+      div.style.backgroundColor = 'red';
+    } else if (style === 'arrowUp') {
+      const arrow = document.createElement('div');
+      arrow.classList.add('arrowup');
+      arrow.style.transform = 'rotate(180deg)';
+      div.appendChild(arrow);
+    } else if (style === 'arrowDown') {
+      const arrow = document.createElement('div');
+      arrow.classList.add('arrowup');
+      div.prepend(arrow);
+    }
+  }
+}*/
 function compareGuess(champ, row){
 
 const keys = ['gender', 'position', 'species', 'resource', 'rangeType', 'region', 'releaseYear'];
@@ -230,22 +272,33 @@ document.getElementById('sign-log').addEventListener('click', () => {
 let loadLogin = true;
 
 document.getElementById('eye').addEventListener('click', () => {
-  if (passwordField.type === 'password') {
+  if (passwordField.type === 'password' && loadLogin === true) {
     passwordField.type = 'text';
     passwordField2.type = 'text';
-  } else if (passwordField.type === 'text'){
+  } else if (passwordField.type === 'text' && loadLogin === true){
     passwordField.type = 'password';
     passwordField2.type = 'password';
   }
 })
+document.getElementById('login-eye').addEventListener('click', () => {
+  if (loginPassword.type === 'password' && loadLogin === false){
+    loginPassword.type = 'text';
+  } else if(loginPassword.type === 'text' && loadLogin === false){
+    loginPassword.type = 'password';
+  }
+})
+
 
 function showLogin(){
-  passwordField.value = '';
-  passwordField2.value = '';
+  loginPassword.value = '';
   history.pushState({ screen: 'login' }, '', '?screen=login');
   gamePage.style.display = 'none';
   loginPage.style.display = 'flex';
-  document.getElementById('password-field2').style.display = 'none';
+  loginPassword.style.display = 'flex';
+  passwordField.style.display = 'none';
+  passwordField2.style.display = 'none';
+  document.getElementById('eye').style.display = 'none';
+  document.getElementById('login-eye').style.display = 'flex'
   document.getElementById('login-head').textContent = 'Log in';
   document.getElementById('sign-log').textContent = `Don't have an account? Sign up by clicking here`;
   loadLogin = false;
@@ -254,7 +307,11 @@ function showLogin(){
 function showSignup(){
   passwordField.value = '';
   passwordField2.value = '';
-  document.getElementById('password-field2').style.display = 'block';  
+  passwordField.style.display = 'flex';
+  passwordField2.style.display = 'flex';
+  loginPassword.style.display = 'none';
+  document.getElementById('login-eye').style.display = 'none';
+  document.getElementById('eye').style.display = 'flex';
   document.getElementById('login-head').textContent = 'Create account';
   document.getElementById('sign-log').textContent = `Already have an account? Log in by clicking here`;
   loadLogin = true;

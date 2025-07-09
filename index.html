@@ -39,18 +39,23 @@
     <div id="login-page">
         <div id="login-head"></div>
         <form id="form-login">
-        <input type="text" id="username-field" placeholder="Username">
+        <input type="text" id="username-field" name="username" autocomplete="username" placeholder="Username">
             <div id="password-wrap">
-            <input type="password" id="password-field" placeholder="Password"> <button id="eye">👁️</button></div>
-            <input type="password" id="password-field2" placeholder="Repeat Password">
+                <input type="password" id="signup-password" name="password" autocomplete="new-password" placeholder="Password"> <button id="eye" type="button">👁️</button>
+            </div>          
+                <input type="password" id="signup-password2" name="password" autocomplete="confirm-password" placeholder="Repeat Password">
+
+            <div id="password-wrap">
+                <input type="password" id="login-password" name="password" autocomplete="current-password" placeholder="Password"><button id="login-eye" type="button">👁️</button>
+            </div>
+            
             <button id="login-btn">Submit</button>
             </form>
             <div class="error-message"></div>
-        
+
 
         <button id="sign-log"></button>
         <button id="return-game">Go back to game</button>
-
     </div>
 </div>
 

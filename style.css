@@ -227,11 +227,26 @@ input {
     padding-left: 5px;
     border-radius: 5px;
 }
-#eye{
+
+#password-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  margin-left: 32px;
+}
+
+#password-wrap input {
+  padding-left: 5px;
+  border-radius: 5px;
+}
+#eye, 
+#login-eye {
     width: 20px;
     height: 20px;
     all: unset;
-    position: absolute;
+    flex-shrink: 0;
 }
 
 .error-message{
