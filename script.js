@@ -38,22 +38,30 @@ async function getDailyChampion() {
     console.error('Error fetching daily champion:', err);
   }
 }
-/*
+
 async function sendGuess(guessedChamp, row) {
   try {
     const res = await fetch('https://lolguesser-backend.onrender.com/api/guess', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(guessedChamp)
+      body: JSON.stringify(guessedChamp)  
     });
 
     const data = await res.json();
-    compareGuess(data.feedback, row); // <-- updated!
+
+    compareServerFeedback(data.feedback, row);
+
+    if (data.result === 'correct') {
+      setTimeout(() => {
+        guessInput.disabled = true;
+        winnerScreen();
+      }, 3500);
+    }
+
   } catch (err) {
     console.error('Guess failed:', err);
   }
 }
-*/
 confirmInput.addEventListener('click', () => {
     const rawGuess = guessInput.value;
     const guess = cleanString(rawGuess);
@@ -77,13 +85,8 @@ confirmInput.addEventListener('click', () => {
     if (!alreadyGuessed.includes(champ)) {alreadyGuessed.push(champ)} else return;
     guessInput.value = '';
 
-    if (champ.name === target.name) {
-      setTimeout(() => {
-      guessInput.disabled = true;
-      winnerScreen()}, 3500);
-    }
     const row = makeGuessRow(champ);
-    compareGuess(champ, row);
+    sendGuess(champ, row);
 })
 
 function cleanString(str){
@@ -120,7 +123,8 @@ function makeGuessRow(champ){
     addAnimation();
     return guessRow;
 }
-/*function compareGuess(feedback, row) {
+
+function compareServerFeedback(feedback, row) {
   const keys = Object.keys(feedback);
 
   for (let key of keys) {
@@ -146,7 +150,10 @@ function makeGuessRow(champ){
       div.prepend(arrow);
     }
   }
-}*/
+  console.log('Styling', key, feedback[key]);
+console.log('Div:', div);
+}
+/*
 function compareGuess(champ, row){
 
 const keys = ['gender', 'position', 'species', 'resource', 'rangeType', 'region', 'releaseYear'];
@@ -186,7 +193,7 @@ const partialMatch = guessArr.some(val => targetArr.includes(val));
   }
  }
   }
-
+*/
 const champMapper = {
   mf: "Miss Fortune",
   gp: "Gangplank",
