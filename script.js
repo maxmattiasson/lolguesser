@@ -32,7 +32,7 @@ async function getDailyChampion() {
   try {
     const res = await fetch('https://lolguesser-backend.onrender.com/api/champion/daily');
     target = await res.json();
-    console.log('champion from backend:', target);
+    console.log('Got champion from backend:');
     checkServer();
   } catch (err) {
     console.error('Error fetching daily champion:', err);
@@ -86,6 +86,7 @@ confirmInput.addEventListener('click', () => {
     guessInput.value = '';
 
     const row = makeGuessRow(champ);
+    console.log("Using backend comparison!");
     sendGuess(champ, row);
 })
 
