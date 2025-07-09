@@ -48,7 +48,6 @@ async function sendGuess(guessedChamp, row) {
     });
 
     const data = await res.json();
-  console.log("sendGuess called!");
 
     compareServerFeedback(data.feedback, row);
 
@@ -60,7 +59,6 @@ async function sendGuess(guessedChamp, row) {
     }
 
   } catch (err) {
-    console.error('Guess failed:', err);
   }
 }
 confirmInput.addEventListener('click', () => {
@@ -87,7 +85,6 @@ confirmInput.addEventListener('click', () => {
     guessInput.value = '';
 
     const row = makeGuessRow(champ);
-    console.log("Using backend comparison!");
     sendGuess(champ, row);
 })
 
@@ -146,14 +143,14 @@ function compareServerFeedback(feedback, row) {
       arrow.classList.add('arrowup');
       arrow.style.transform = 'rotate(180deg)';
       div.appendChild(arrow);
+      div.style.backgroundColor = 'red';
     } else if (style === 'arrowDown') {
       const arrow = document.createElement('div');
       arrow.classList.add('arrowup');
       div.prepend(arrow);
+      div.style.backgroundColor = 'red';      
     }
   }
-  console.log('Styling', key, feedback[key]);
-console.log('Div:', div);
 }
 /*
 function compareGuess(champ, row){
