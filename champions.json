@@ -1728,7 +1728,7 @@
   },
   {
     "name": "Xerath",
-    "gender": "Undead",
+    "gender": "Male",
     "position": ["Mid", "Support"],
     "species": ["Baccai"],
     "rangeType": ["Ranged"],

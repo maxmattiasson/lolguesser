@@ -221,7 +221,7 @@ function winnerScreen() {
   jsConfetti.addConfetti({
     emojis: ["👑", "💯", "💦", "😤"],
     emojiSize: 50,
-    confettiNumber: 200,
+    confettiNumber: 100,
     confettiColors: [
       "#ff0a54",
       "#ff477e",
