@@ -366,8 +366,12 @@ if (!usernameRegex.test(username)) {
       password: password1
     })
   })
-    .then(res => res.json())
-    .then(data => {
+ .then(async res => {
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || 'Signup failed.');
+  }
       console.log('Signup response:', data);
       usernameField.value = '';
       passwordField.value = '';
@@ -376,7 +380,7 @@ if (!usernameRegex.test(username)) {
     })
     .catch(err => {
       console.error('❌ Signup failed:', err);
-      showError("Something went wrong. Please try again.");
+      showError(err.message);
     });
 
   }
