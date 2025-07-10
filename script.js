@@ -349,16 +349,37 @@ function signUp(){
 let username = usernameField.value.trim();
 const password1 = passwordField.value;
 const password2 = passwordField2.value;
-
-if (password1 === password2 && password1.length > 5) {
-  console.log("Password approved!");
-} else {
-  showError("Passwords must match and be at least 6 characters.");
-}
-
 const usernameRegex = /^[a-zA-Z0-9]{3,15}$/;
+
 if (!usernameRegex.test(username)) {
   showError("Username must be 3-15 letters or numbers, no symbols or spaces.");
+} else if (password1 !== password2 || password1.length <= 5) {
+  showError("Passwords must match and be at least 6 characters.");
+} else {
+  console.log("✅ All inputs valid, sending to server...");
+
+  fetch('https://lolguesser-backend.onrender.com/api/signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      username: username,
+      password: password1
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log('Signup response:', data);
+      usernameField.value = '';
+      passwordField.value = '';
+      passwordField2.value = '';
+      showError('Sign up successful!');
+      errMessage.style.backgroundColor = 'green';
+    })
+    .catch(err => {
+      console.error('❌ Signup failed:', err);
+      showError("Something went wrong. Please try again.");
+    });
+
   }
 }
 
@@ -370,6 +391,8 @@ function showError(message){
   let errMessage = document.querySelector('.error-message');
   errMessage.textContent = message;
   errMessage.style.display = 'block';
+  errMessage.style.backgroundColor = 'red';
+
 
 [usernameField, passwordField, passwordField2].forEach(field => {
   field.addEventListener('input', () => {
