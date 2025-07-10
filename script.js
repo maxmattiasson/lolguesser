@@ -373,7 +373,7 @@ if (!usernameRegex.test(username)) {
       passwordField.value = '';
       passwordField2.value = '';
       showError('Sign up successful!');
-      errMessage.style.backgroundColor = 'green';
+      errMessage.style.color = 'green';
     })
     .catch(err => {
       console.error('❌ Signup failed:', err);
@@ -391,7 +391,7 @@ function showError(message){
   let errMessage = document.querySelector('.error-message');
   errMessage.textContent = message;
   errMessage.style.display = 'block';
-  errMessage.style.backgroundColor = 'red';
+  errMessage.style.color = 'red';
 
 
 [usernameField, passwordField, passwordField2].forEach(field => {
