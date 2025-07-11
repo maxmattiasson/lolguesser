@@ -62,6 +62,7 @@ async function sendGuess(guessedChamp, row) {
     if (data.result === 'correct') {
       setTimeout(() => {
         guessInput.disabled = true;
+        stopGame = true;
         winnerScreen();
       }, 3500);
     }
@@ -465,7 +466,8 @@ async function loadPreviousGuesses() {
       const champ = g.guessedChamp;
 
       if (alreadyGuessed.some(c => c.name === champ.name)) continue;
-      
+      alreadyGuessed.push(champ);
+
       const row = makeGuessRow(champ); 
       sendGuess(champ, row);
     } console.log(alreadyGuessed);
