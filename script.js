@@ -388,7 +388,7 @@ if (!usernameRegex.test(username)) {
 
 function logIn(){
   const username = usernameField.value;
-  const password = passwordField.value; 
+  const password = loginPassword.value; 
 
  fetch('https://lolguesser-backend.onrender.com/api/login', {
   method: 'POST',
