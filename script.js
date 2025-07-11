@@ -14,8 +14,6 @@ const loginBtn = document.getElementById('login');
 const rememberMeField = document.getElementById('remember-me');
 const logoutBtn = document.getElementById('logout');
 
-
-let target;
 let champList = [];
 let alreadyGuessed = [];
 let stopGame = false;
@@ -33,18 +31,7 @@ async function getChampList(){
 getChampList();
 window.addEventListener('DOMContentLoaded', async () => {
   await getChampList();
-  await getDailyChampion();
 });
-
-async function getDailyChampion() {
-  try {
-    const res = await fetch('https://api.lolgiss.com/api/champion/daily');
-    target = await res.json();
-    console.log('Got champion from backend:');
-  } catch (err) {
-    console.error('Error fetching daily champion:', err);
-  }
-}
 
 async function sendGuess(guessedChamp, row) {
   try {
@@ -315,7 +302,6 @@ if (!usernameRegex.test(username)) {
 } else if (password1 !== password2 || password1.length <= 5) {
   showError("Passwords must match and be at least 6 characters.");
 } else {
-  console.log("✅ All inputs valid, sending to server...");
 
   fetch('https://api.lolgiss.com/api/signup', {
     method: 'POST',
@@ -331,7 +317,6 @@ if (!usernameRegex.test(username)) {
   if (!res.ok) {
     throw new Error(data.error || 'Signup failed.');
   }
-      console.log('Signup response:', data);
       usernameField.value = '';
       passwordField.value = '';
       passwordField2.value = '';
@@ -366,7 +351,6 @@ function logIn(){
       showError(data.error || 'Login failed.');
       return;
     }
-    console.log(data.message);
     checkLoginStatus();
     showGame();
     alreadyGuessed = [];
@@ -430,7 +414,6 @@ function checkLoginStatus() {
 
       loginContent.style.display = 'none';
       loginBtn.style.display = 'block';
-      console.log('❌ No valid session found');
     });
 }
 
@@ -470,7 +453,7 @@ async function loadPreviousGuesses() {
 
       const row = makeGuessRow(champ); 
       sendGuess(champ, row);
-    } console.log(alreadyGuessed);
+    } 
   } catch (err) {
     console.error('❌ Failed to load previous guesses:', err);
   }
