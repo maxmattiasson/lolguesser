@@ -266,12 +266,12 @@ input {
 }
 
 .error-message{
-    display: none;
+    visibility: hidden;
     color: red;
     padding: 10px;
     font-weight: 800;
     text-align: center;
-    height: auto;
+    height: 50px;
 }
 
 #sign-log {
@@ -299,6 +299,10 @@ input {
     margin-bottom: 5px;
     height: 25px;
     width: 75px;
+}
+
+#remember-me{
+    color: rgb(255, 255, 255);
 }
 
 /* 
@@ -343,6 +347,10 @@ input {
 }
     #guessContainer::-webkit-scrollbar {
     display: none;
+}
+    #login{
+        width: 60px;
+        font-size: 0.6rem;
 }
     html, body {
     overflow-y: auto !important;

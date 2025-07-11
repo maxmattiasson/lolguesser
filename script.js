@@ -387,13 +387,35 @@ if (!usernameRegex.test(username)) {
 }
 
 function logIn(){
+  const username = usernameField.value;
+  const password = passwordField.value; 
 
+ fetch('https://lolguesser-backend.onrender.com/api/login', {
+  method: 'POST',
+  credentials: 'include',  
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ username, password })
+})
+  .then(async res => {
+    const data = await res.json();
+    
+    if (!res.ok) {
+      showError(data.error || 'Login failed.');
+      return;
+    }
+    console.log(data.message);
+  })
+  .catch(err => {
+    showError('Something went wrong. Try again later.');
+  });
 }
 
 function showError(message){
   let errMessage = document.querySelector('.error-message');
   errMessage.textContent = message;
-  errMessage.style.display = 'block';
+  errMessage.style.visibility = 'visible';
   
   if (message === 'Sign up successful!') {
      errMessage.style.color = 'green';
@@ -401,7 +423,7 @@ function showError(message){
 
 [usernameField, passwordField, passwordField2].forEach(field => {
   field.addEventListener('input', () => {
-    errMessage.style.display = 'none';
+    errMessage.style.visibility = 'hidden';
   });
 });
 };
