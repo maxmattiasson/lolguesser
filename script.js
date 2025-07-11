@@ -12,6 +12,7 @@ const usernameField = document.getElementById('username-field');
 const loginContent = document.getElementById('loggedin-block');
 const loginBtn = document.getElementById('login');
 const rememberMeField = document.getElementById('remember-me');
+const logoutBtn = document.getElementById('logout');
 
 
 let target;
@@ -379,6 +380,8 @@ function logIn(){
     console.log(data.message);
     checkLoginStatus();
     showGame();
+    alreadyGuessed = [];
+    guessContainer.innerHTML = '';
   })
   .catch(err => {
     showError('Something went wrong. Try again later.');
@@ -441,3 +444,20 @@ function checkLoginStatus() {
     });
 }
 
+logoutBtn.addEventListener('click', () => {
+  fetch('https://lolguesser-backend.onrender.com/api/logout', {
+  method: 'POST',
+  credentials: 'include',  
+  }) .then(res => res.json())
+     .then(data =>{
+      isLoggedIn = false;
+      checkLoginStatus();
+      alreadyGuessed = [];
+      guessContainer.innerHTML = '';
+      serverStatus.textContent = `Logged out, please log in for the ultimate experience`;
+      showGame();
+     })
+    .catch(err => {
+    console.error('❌ Logout failed:', err);
+})
+})
