@@ -50,6 +50,7 @@ async function sendGuess(guessedChamp, row) {
   try {
     const res = await fetch('https://lolguesser-backend.onrender.com/api/guess', {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(guessedChamp)
     });
@@ -418,6 +419,7 @@ function checkLoginStatus() {
 
       loginContent.style.display = 'flex';
       loginBtn.style.display = 'none';
+      loadPreviousGuesses();
     })
     .catch(() => {
       isLoggedIn = false;
@@ -448,3 +450,25 @@ logoutBtn.addEventListener('click', () => {
     console.error('❌ Logout failed:', err);
 })
 })
+async function loadPreviousGuesses() {
+  try {
+    const res = await fetch('https://lolguesser-backend.onrender.com/api/guess/today', {
+      method: 'GET',
+      credentials: 'include'
+    });
+
+    const data = await res.json();
+    alreadyGuessed = []; 
+    guessContainer.innerHTML = '';
+
+    for (const g of data.guesses) {
+      const champ = g.guessedChamp;
+      alreadyGuessed.push(champ);
+
+      const row = makeGuessRow(champ); 
+      sendGuess(champ, row);
+    }
+  } catch (err) {
+    console.error('❌ Failed to load previous guesses:', err);
+  }
+}
