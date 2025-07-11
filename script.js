@@ -397,7 +397,7 @@ function showError(message){
      errMessage.style.color = 'green';
   } else {errMessage.style.color = 'red';}
 
-[usernameField, passwordField, passwordField2].forEach(field => {
+[usernameField, passwordField, passwordField2, loginPassword].forEach(field => {
   field.addEventListener('input', () => {
     errMessage.style.visibility = 'hidden';
   });
