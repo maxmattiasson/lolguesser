@@ -463,11 +463,12 @@ async function loadPreviousGuesses() {
 
     for (const g of data.guesses) {
       const champ = g.guessedChamp;
-      alreadyGuessed.push(champ);
 
+      if (alreadyGuessed.some(c => c.name === champ.name)) continue;
+      
       const row = makeGuessRow(champ); 
       sendGuess(champ, row);
-    }
+    } console.log(alreadyGuessed);
   } catch (err) {
     console.error('❌ Failed to load previous guesses:', err);
   }
