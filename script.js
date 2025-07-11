@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 async function getDailyChampion() {
   try {
-    const res = await fetch('https://lolguesser-backend.onrender.com/api/champion/daily');
+    const res = await fetch('https://api.lolgiss.com/api/champion/daily');
     target = await res.json();
     console.log('Got champion from backend:');
   } catch (err) {
@@ -48,7 +48,7 @@ async function getDailyChampion() {
 
 async function sendGuess(guessedChamp, row) {
   try {
-    const res = await fetch('https://lolguesser-backend.onrender.com/api/guess', {
+    const res = await fetch('https://api.lolgiss.com/api/guess', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -317,7 +317,7 @@ if (!usernameRegex.test(username)) {
 } else {
   console.log("✅ All inputs valid, sending to server...");
 
-  fetch('https://lolguesser-backend.onrender.com/api/signup', {
+  fetch('https://api.lolgiss.com/api/signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -351,7 +351,7 @@ function logIn(){
   const rememberMe = document.getElementById('rememberMe');
   const remember = rememberMe.checked;
 
- fetch('https://lolguesser-backend.onrender.com/api/login', {
+ fetch('https://api.lolgiss.com/api/login', {
   method: 'POST',
   credentials: 'include',  
   headers: {
@@ -404,7 +404,7 @@ window.addEventListener("popstate", () => {
 });
 
 function checkLoginStatus() {
-  fetch('https://lolguesser-backend.onrender.com/api/profile', {
+  fetch('https://api.lolgiss.com/api/profile', {
     method: 'GET',
     credentials: 'include'
   })
@@ -435,7 +435,7 @@ function checkLoginStatus() {
 }
 
 logoutBtn.addEventListener('click', () => {
-  fetch('https://lolguesser-backend.onrender.com/api/logout', {
+  fetch('https://api.lolgiss.com/api/logout', {
   method: 'POST',
   credentials: 'include',  
   }) .then(res => res.json())
@@ -453,7 +453,7 @@ logoutBtn.addEventListener('click', () => {
 })
 async function loadPreviousGuesses() {
   try {
-    const res = await fetch('https://lolguesser-backend.onrender.com/api/guess/today', {
+    const res = await fetch('https://api.lolgiss.com/api/guess/today', {
       method: 'GET',
       credentials: 'include'
     });
