@@ -358,7 +358,8 @@ if (!usernameRegex.test(username)) {
 function logIn(){
   const username = usernameField.value;
   const password = loginPassword.value; 
-  const remember = rememberMeField.checked;
+  const rememberMe = document.getElementById('rememberMe');
+  const remember = rememberMe.checked;
 
  fetch('https://lolguesser-backend.onrender.com/api/login', {
   method: 'POST',
