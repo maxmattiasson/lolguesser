@@ -41,7 +41,6 @@ async function getDailyChampion() {
     const res = await fetch('https://lolguesser-backend.onrender.com/api/champion/daily');
     target = await res.json();
     console.log('Got champion from backend:');
-    checkServer();
   } catch (err) {
     console.error('Error fetching daily champion:', err);
   }
@@ -217,18 +216,6 @@ function addAnimation(){
     cont.classList.add('animate-in');
   }, i * 500);
 });
-}
-
-function checkServer(){
-  if (isLoggedIn) {
-    serverStatus.textContent = `Welcome ${loggedinuser}!`;
-    serverStatus.style.color = 'white';
-    guessInput.disabled = false;
-  } else {
-    serverStatus.textContent = "Redo!";
-    serverStatus.style.color = "lightgreen";
-    guessInput.disabled = false;
-  }
 }
 
 loginBtn.addEventListener('click', showLogin);
