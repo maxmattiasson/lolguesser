@@ -316,7 +316,7 @@ document.getElementById('login-btn').addEventListener('click', (e) => {
 
 
 function signUp(){
-let username = usernameField.value.trim();
+let username = usernameField.value.trim().toLowerCase();
 const password1 = passwordField.value;
 const password2 = passwordField2.value;
 const usernameRegex = /^[a-zA-Z0-9]{3,15}$/;
@@ -357,7 +357,7 @@ if (!usernameRegex.test(username)) {
 }
 
 function logIn(){
-  const username = usernameField.value;
+  const username = usernameField.value.trim().toLowerCase();
   const password = loginPassword.value; 
   const rememberMe = document.getElementById('rememberMe');
   const remember = rememberMe.checked;
