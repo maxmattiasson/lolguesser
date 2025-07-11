@@ -422,15 +422,22 @@ function checkLoginStatus() {
     })
     .then(data => {
       isLoggedIn = true;
-      showGame();
+      serverStatus.textContent = `Welcome, ${data.user.username}!`;
+      serverStatus.style.color = 'white';
+      guessInput.disabled = false;
+
       loginContent.style.display = 'flex';
       loginBtn.style.display = 'none';
-      console.log('✅ Auto-logged in as', data.user.username);
     })
     .catch(() => {
       isLoggedIn = false;
+      serverStatus.textContent = 'Redo!';
+      serverStatus.style.color = 'lightgreen';
+      guessInput.disabled = false;
+
       loginContent.style.display = 'none';
       loginBtn.style.display = 'block';
       console.log('❌ No valid session found');
     });
 }
+
