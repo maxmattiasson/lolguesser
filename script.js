@@ -9,6 +9,10 @@ const passwordField = document.getElementById('signup-password');
 const passwordField2 = document.getElementById('signup-password2');
 const loginPassword = document.getElementById('login-password')
 const usernameField = document.getElementById('username-field');
+const loginContent = document.getElementById('loggedin-block');
+const loginBtn = document.getElementById('login');
+const rememberMeField = document.getElementById('remember-me');
+
 
 let target;
 let champList = [];
@@ -16,7 +20,10 @@ let alreadyGuessed = [];
 let stopGame = false;
 guessInput.disabled = true;
 
+let isLoggedIn = false;
+
 showGame();
+checkLoginStatus();
 
 async function getChampList(){
     const res = await fetch('champions.json');
@@ -152,47 +159,7 @@ function compareServerFeedback(feedback, row) {
     }
   }
 }
-/*
-function compareGuess(champ, row){
 
-const keys = ['gender', 'position', 'species', 'resource', 'rangeType', 'region', 'releaseYear'];
-
-for (let key of keys) {
-  const div = row.querySelector(`[data-type="${key}"]`);
-  if (!div) continue;
-
-  const guessValue = champ[key];
-  const targetValue = target[key];
-
-const guessArr = Array.isArray(guessValue) ? [...guessValue].sort() : [guessValue];
-const targetArr = Array.isArray(targetValue) ? [...targetValue].sort() : [targetValue];
-
-  if (key === 'releaseYear') {
-    if (guessValue > targetValue) {
-    const test = document.createElement('div');
-    test.classList.add('arrowup');
-    test.style.transform = "rotate(180deg)";
-    div.appendChild(test);
-  } else if (guessValue < targetValue) {
-    const test = document.createElement('div');
-    test.classList.add('arrowup');
-    div.prepend(test);
-  } else {div.style.backgroundColor = 'green'}
-}
-
-const fullMatch = JSON.stringify(guessArr) === JSON.stringify(targetArr);
-const partialMatch = guessArr.some(val => targetArr.includes(val));
-
-  if (fullMatch) {
-    div.style.backgroundColor = 'green';
-  } else if (partialMatch) {
-    div.style.backgroundColor = 'yellow';
-  } else {
-    div.style.backgroundColor = 'red';
-  }
- }
-  }
-*/
 const champMapper = {
   mf: "Miss Fortune",
   gp: "Gangplank",
@@ -252,10 +219,10 @@ function addAnimation(){
 }
 
 function checkServer(){
-  if (!target || typeof target !== "object" || !target.name) {
-    serverStatus.textContent = "Servern håller på att vakna, redo om några sekunder ...";
-    serverStatus.style.color = 'Yellow';
-    guessInput.disabled = true;
+  if (isLoggedIn) {
+    serverStatus.textContent = `Welcome ${loggedinuser}!`;
+    serverStatus.style.color = 'white';
+    guessInput.disabled = false;
   } else {
     serverStatus.textContent = "Redo!";
     serverStatus.style.color = "lightgreen";
@@ -263,7 +230,7 @@ function checkServer(){
   }
 }
 
-login.addEventListener('click', showLogin);
+loginBtn.addEventListener('click', showLogin);
 
 document.getElementById('return-game').addEventListener('click', showGame);
 
@@ -303,6 +270,7 @@ function showLogin(){
   loginPassword.style.display = 'flex';
   passwordField.style.display = 'none';
   passwordField2.style.display = 'none';
+  rememberMeField.style.display = 'inline-block';
   document.getElementById('eye').style.display = 'none';
   document.getElementById('login-eye').style.display = 'flex'
   document.getElementById('login-head').textContent = 'Log in';
@@ -316,6 +284,7 @@ function showSignup(){
   passwordField.style.display = 'flex';
   passwordField2.style.display = 'flex';
   loginPassword.style.display = 'none';
+  rememberMeField.style.display = 'none';
   document.getElementById('login-eye').style.display = 'none';
   document.getElementById('eye').style.display = 'flex';
   document.getElementById('login-head').textContent = 'Create account';
@@ -389,6 +358,7 @@ if (!usernameRegex.test(username)) {
 function logIn(){
   const username = usernameField.value;
   const password = loginPassword.value; 
+  const remember = rememberMeField.checked;
 
  fetch('https://lolguesser-backend.onrender.com/api/login', {
   method: 'POST',
@@ -396,7 +366,7 @@ function logIn(){
   headers: {
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify({ username, password })
+  body: JSON.stringify({ username, password, remember })
 })
   .then(async res => {
     const data = await res.json();
@@ -406,6 +376,8 @@ function logIn(){
       return;
     }
     console.log(data.message);
+    checkLoginStatus();
+    showGame();
   })
   .catch(err => {
     showError('Something went wrong. Try again later.');
@@ -437,3 +409,27 @@ window.addEventListener("popstate", () => {
     loginPage.style.display = "none";
   }
 });
+
+function checkLoginStatus() {
+  fetch('https://lolguesser-backend.onrender.com/api/profile', {
+    method: 'GET',
+    credentials: 'include'
+  })
+    .then(res => {
+      if (!res.ok) throw new Error('Not logged in');
+      return res.json();
+    })
+    .then(data => {
+      isLoggedIn = true;
+      showGame();
+      loginContent.style.display = 'flex';
+      loginBtn.style.display = 'none';
+      console.log('✅ Auto-logged in as', data.user.username);
+    })
+    .catch(() => {
+      isLoggedIn = false;
+      loginContent.style.display = 'none';
+      loginBtn.style.display = 'block';
+      console.log('❌ No valid session found');
+    });
+}
