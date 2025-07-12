@@ -461,6 +461,14 @@ async function loadPreviousGuesses() {
 
     const row = makeGuessRow(champ);
     compareServerFeedback(feedback, row);
+
+  if (data.result === 'correct') {
+      setTimeout(() => {
+        guessInput.disabled = true;
+        stopGame = true;
+        winnerScreen();
+      }, 3500);
+    }
   }
   } catch (err) {
     console.error('❌ Failed to load previous guesses:', err);
