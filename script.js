@@ -28,9 +28,10 @@ async function getChampList(){
     const res = await fetch('champions.json');
     champList = await res.json();
 }
-getChampList();
+
 window.addEventListener('DOMContentLoaded', async () => {
   await getChampList();
+  await checkEverythingReady();
 });
 
 async function sendGuess(guessedChamp, row) {
@@ -388,34 +389,38 @@ window.addEventListener("popstate", () => {
   }
 });
 
-function checkLoginStatus() {
-  fetch('https://api.lolgiss.com/api/profile', {
-    method: 'GET',
-    credentials: 'include'
-  })
-    .then(res => {
-      if (!res.ok) throw new Error('Not logged in');
-      return res.json();
-    })
-    .then(data => {
-      isLoggedIn = true;
-      serverStatus.textContent = `Welcome, ${data.user.username}!`;
-      serverStatus.style.color = 'white';
-      guessInput.disabled = false;
+async function checkLoginStatus() {
+  guessInput.disabled = true;
+  loginBtn.disabled = true;
 
-      loginContent.style.display = 'flex';
-      loginBtn.style.display = 'none';
-      loadPreviousGuesses();
-    })
-    .catch(() => {
-      isLoggedIn = false;
-      serverStatus.textContent = 'Redo!';
-      serverStatus.style.color = 'lightgreen';
-      guessInput.disabled = false;
-
-      loginContent.style.display = 'none';
-      loginBtn.style.display = 'block';
+  try {
+    const res = await fetch('https://api.lolgiss.com/api/profile', {
+      method: 'GET',
+      credentials: 'include'
     });
+
+    if (!res.ok) throw new Error();
+
+    const data = await res.json();
+    isLoggedIn = true;
+
+    serverStatus.textContent = `Welcome, ${data.user.username}!`;
+    serverStatus.style.color = 'white';
+    loginContent.style.display = 'flex';
+    loginBtn.style.display = 'none';
+
+    await loadPreviousGuesses();
+  } catch {
+    isLoggedIn = false;
+
+    serverStatus.textContent = 'Redo!';
+    serverStatus.style.color = 'lightgreen';
+    loginContent.style.display = 'none';
+    loginBtn.style.display = 'block';
+  } finally {
+    guessInput.disabled = false;
+    loginBtn.disabled = false;
+  }
 }
 
 logoutBtn.addEventListener('click', () => {
@@ -462,7 +467,7 @@ async function loadPreviousGuesses() {
     const row = makeGuessRow(champ);
     compareServerFeedback(feedback, row);
 
-  if (data.result === 'correct') {
+  if (g.result === 'correct') {
       setTimeout(() => {
         guessInput.disabled = true;
         stopGame = true;
@@ -473,4 +478,20 @@ async function loadPreviousGuesses() {
   } catch (err) {
     console.error('❌ Failed to load previous guesses:', err);
   }
+}
+
+async function checkEverythingReady() {
+  guessInput.disabled = true;
+  loginBtn.disabled = true;
+
+  try {
+    await fetch('https://api.lolgiss.com/api/champion/daily');
+    await fetch('https://api.lolgiss.com/api/profile', { credentials: 'include' });
+    await loadPreviousGuesses();
+  } catch (err) {
+    console.log('something broke')
+  }
+
+  guessInput.disabled = false;
+  loginBtn.disabled = false;
 }
