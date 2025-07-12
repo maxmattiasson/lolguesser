@@ -445,15 +445,23 @@ async function loadPreviousGuesses() {
     const data = await res.json();
     alreadyGuessed = []; 
     guessContainer.innerHTML = '';
-
+/*
     for (const g of data.guesses) {
       const champ = g.guessedChamp;
-
+      
       if (alreadyGuessed.some(c => c.name === champ.name)) continue;
       alreadyGuessed.push(champ);
+      */
+  for (const g of data.guesses) {
+    const champ = g.guessedChamp;
+    const feedback = g.feedback;
 
-      makeGuessRow(champ);
-    } 
+    if (alreadyGuessed.some(c => c.name === champ.name)) continue;
+    alreadyGuessed.push(champ);
+
+    const row = makeGuessRow(champ);
+    compareServerFeedback(feedback, row);
+  }
   } catch (err) {
     console.error('❌ Failed to load previous guesses:', err);
   }
