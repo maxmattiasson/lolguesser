@@ -55,6 +55,7 @@ async function sendGuess(guessedChamp, row) {
     }
 
   } catch (err) {
+      console.error('❌ sendGuess failed:', err);
   }
 }
 confirmInput.addEventListener('click', () => {
@@ -451,8 +452,7 @@ async function loadPreviousGuesses() {
       if (alreadyGuessed.some(c => c.name === champ.name)) continue;
       alreadyGuessed.push(champ);
 
-      const row = makeGuessRow(champ); 
-      sendGuess(champ, row);
+      makeGuessRow(champ);
     } 
   } catch (err) {
     console.error('❌ Failed to load previous guesses:', err);
