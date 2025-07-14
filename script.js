@@ -18,6 +18,7 @@ const statsPage = document.getElementById('stats-page');
 
 let champList = [];
 let alreadyGuessed = [];
+let currentUser = null;
 let stopGame = false;
 guessInput.disabled = true;
 
@@ -285,6 +286,7 @@ function showStats(){
   gamePage.style.display = 'none';
   statsPage.style.display = 'block';
   history.pushState({ screen: 'stats' }, '', '?screen=stats');
+  document.getElementById('stats-username').textContent = `📊 ${currentUser.charAt(0).toUpperCase()}${currentUser.slice(1)}`
 }
 
 document.addEventListener('keydown', (e) => {
@@ -420,7 +422,8 @@ async function checkLoginStatus() {
     const data = await res.json();
     isLoggedIn = true;
 
-    serverStatus.textContent = `Welcome, ${data.user.username}!`;
+    currentUser = data.user.username;
+    serverStatus.textContent = `Welcome, ${currentUser}!`;
     serverStatus.style.color = 'white';
     loginContent.style.display = 'flex';
     loginBtn.style.display = 'none';

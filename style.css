@@ -335,6 +335,11 @@ input {
     justify-content: space-between;
 }
 
+#stats-username {
+    font-family: 'Luckiest Guy', sans-serif;
+    color: white;
+    -webkit-text-stroke: 1px black;
+}
 .stat-card {
   background: #f3f3f3;
   padding: 16px 20px;
