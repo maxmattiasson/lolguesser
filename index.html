@@ -14,9 +14,56 @@
 </head>
 <body>
 <div class="background-blur"></div>
+
+<div id="stats-page">
+    <div id="stats-header">
+        <h1>📊 Username</h1>
+        <button id="show-game">Back to game</button>
+ </div>
+
+  <div class="stat-card">
+    <h2>🧠 General</h2>
+    <p>Total Guesses: 123</p>
+    <p>Games Played: 27 — <strong>rank #1 in the world</strong></p>
+    <p>Average Guesses: 4.5 — <strong>rank #1 in the world</strong></p>
+    <p>Oneshots: 4 — <strong>rank #1 in the world</strong></p>
+    <p>Current Streak: 🔥 4</p>
+    <p>Best Streak: 🏆 9</p>
+  </div>
+
+  <div class="stat-card">
+    <h2>📈 Games</h2>
+    <p>Last 7 games: 
+      <span class="guess-box green">3</span>
+      <span class="guess-box green">2</span>
+      <span class="guess-box orange">5</span>
+      <span class="guess-box red">6</span>
+      <span class="guess-box green">3</span>
+      <span class="guess-box green">1</span>
+      <span class="guess-box orange">4</span>
+    </p>
+    <canvas id="guessesPerDayChart"></canvas>
+  </div>
+
+  <div class="stat-card">
+    <h2>🧪 Fun Facts</h2>
+    <p>You guessed Yasuo 4 times. He was never correct 😅</p>
+    <p>You’re a confirmed Yordle hater. 9 incorrect Teemo guesses.</p>
+    <p>Manaless accuracy: 40%</p>
+    <p>Worst Day: June 28 — 11 guesses for championname🤡 "You were legally blind that day"</p>
+  </div>
+
+    <div class="stat-card">
+    <h2>🎯 Guess Accuracy</h2>
+    <p>Release Year: ±1.8 years</p>
+    <p>Gender: 91%</p>
+    <p>Region: 77%</p>
+    <p>Position: 65%</p>
+    <p>Species: 58%</p>
+  </div>
+</div>
+
 <div id="game-container">
-
-
 <div class="headers">
  <h1 id="logo">Lolgiss</h1>
  <button id="login">LOGIN</button>

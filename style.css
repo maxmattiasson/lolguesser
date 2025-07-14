@@ -318,6 +318,61 @@ input {
 
 /* 
 ---------------------------------
+    STATS PAGE SETTINGS BELOW
+---------------------------------
+*/
+
+#stats-page {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: sans-serif;
+  display: none;
+}
+#stats-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.stat-card {
+  background: #f3f3f3;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.stat-card h2 {
+  margin-bottom: 10px;
+}
+
+.guess-box {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.green {
+  background-color: #4caf50;
+}
+
+.orange {
+  background-color: #ff9800;
+}
+
+.red {
+  background-color: #f44336;
+}
+
+/* 
+---------------------------------
     MOBILE SETTINGS BELOW
 ---------------------------------
 */
@@ -337,8 +392,8 @@ input {
         padding-bottom: 10px;
 }
     .champ-icon {
-        height: 4vh;
-        width: 8vw;
+        height: 6vh;
+        width: 10vw;
         padding-right: 0px;
 }
     .info-cont {
@@ -372,4 +427,8 @@ input {
     body * {
     touch-action: auto;
     }
+    button {
+        color: black;
+    }
 }
+

@@ -13,6 +13,8 @@ const loginContent = document.getElementById('loggedin-block');
 const loginBtn = document.getElementById('login');
 const rememberMeField = document.getElementById('remember-me');
 const logoutBtn = document.getElementById('logout');
+const statsBtn = document.getElementById('stats');
+const statsPage = document.getElementById('stats-page');
 
 let champList = [];
 let alreadyGuessed = [];
@@ -275,6 +277,14 @@ function showGame(){
   history.pushState({ screen: 'game' }, '', '?screen=game');
   loginPage.style.display = 'none';
   gamePage.style.display = 'block';
+  statsPage.style.display = 'none';
+}
+
+function showStats(){
+  loginPage.style.display = 'none';
+  gamePage.style.display = 'none';
+  statsPage.style.display = 'block';
+  history.pushState({ screen: 'stats' }, '', '?screen=stats');
 }
 
 document.addEventListener('keydown', (e) => {
@@ -383,9 +393,15 @@ window.addEventListener("popstate", () => {
   if (location.search === "?screen=login") {
     loginPage.style.display = "flex";
     gamePage.style.display = "none";
-  } else {
+    statsPage.style.display = "none";
+  } else if (location.search === "?screen=game") {
     gamePage.style.display = "block";
     loginPage.style.display = "none";
+    statsPage.style.display = "none";
+  } else if (location.search === "?screen=stats"){
+    gamePage.style.display = "none";
+    loginPage.style.display = "none";
+    statsPage.style.display = "block";
   }
 });
 
@@ -495,3 +511,8 @@ async function checkEverythingReady() {
   guessInput.disabled = false;
   loginBtn.disabled = false;
 }
+
+// STATS PAGE SETTINGS BELOW
+
+document.getElementById('show-game').addEventListener('click', showGame);
+statsBtn.addEventListener('click', showStats);
