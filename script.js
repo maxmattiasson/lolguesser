@@ -286,7 +286,9 @@ function showStats(){
   gamePage.style.display = 'none';
   statsPage.style.display = 'block';
   history.pushState({ screen: 'stats' }, '', '?screen=stats');
-  document.getElementById('stats-username').textContent = `📊 ${currentUser.charAt(0).toUpperCase()}${currentUser.slice(1)}`
+  document.getElementById('stats-username').textContent = `📊 ${currentUser.charAt(0).toUpperCase()}${currentUser.slice(1)}`;
+
+  importStats();
 }
 
 document.addEventListener('keydown', (e) => {
@@ -469,13 +471,7 @@ async function loadPreviousGuesses() {
     const data = await res.json();
     alreadyGuessed = []; 
     guessContainer.innerHTML = '';
-/*
-    for (const g of data.guesses) {
-      const champ = g.guessedChamp;
-      
-      if (alreadyGuessed.some(c => c.name === champ.name)) continue;
-      alreadyGuessed.push(champ);
-      */
+
   for (const g of data.guesses) {
     const champ = g.guessedChamp;
     const feedback = g.feedback;
@@ -519,3 +515,15 @@ async function checkEverythingReady() {
 
 document.getElementById('show-game').addEventListener('click', showGame);
 statsBtn.addEventListener('click', showStats);
+
+async function importStats(){ 
+  try {
+    const res = await fetch('https://api.lolgiss.com/api/stats', {
+      credentials : 'include'
+    });
+    const stats = await res.json();
+    console.log(stats); // now display them on the page
+  } catch (err) {
+      console.error('❌ Failed to load stats:', err);
+  }
+}
