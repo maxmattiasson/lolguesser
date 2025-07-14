@@ -522,7 +522,20 @@ async function importStats(){
       credentials : 'include'
     });
     const stats = await res.json();
-    console.log(stats); // now display them on the page
+    
+    document.getElementById('total-guesses').textContent = `Total Guesses: ${stats.totalGuesses}`;
+    document.getElementById('games-played').textContent = `Games Played: ${stats.gamesPlayed}`;
+    document.getElementById('average-guesses').textContent = `Average Guesses: ${stats.avgGuesses}`;
+
+/*
+      username,
+      totalGuesses,
+      gamesPlayed,
+      avgGuesses,
+      oneshots,
+      winRate,
+      avgYearDiff
+*/
   } catch (err) {
       console.error('❌ Failed to load stats:', err);
   }
