@@ -21,11 +21,13 @@ let alreadyGuessed = [];
 let currentUser = null;
 let stopGame = false;
 guessInput.disabled = true;
+let combinedStats = null;
 
 let isLoggedIn = false;
 
 showGame();
 checkLoginStatus();
+combineStatsRanks();
 
 async function getChampList(){
     const res = await fetch('champions.json');
@@ -281,7 +283,7 @@ function showGame(){
   statsPage.style.display = 'none';
 }
 
-function showStats(){
+function showStats(combinedStats){
   loginPage.style.display = 'none';
   gamePage.style.display = 'none';
   statsPage.style.display = 'block';
@@ -514,7 +516,14 @@ async function checkEverythingReady() {
 // STATS PAGE SETTINGS BELOW
 
 document.getElementById('show-game').addEventListener('click', showGame);
-statsBtn.addEventListener('click', showStats);
+
+statsBtn.addEventListener('click', () => {
+  if (!combinedStats) {
+    console.warn('📉 Stats not ready yet!');
+    return;
+  }
+  showStats(combinedStats);
+});
 
 async function fetchStats(){ 
   try {
@@ -541,13 +550,14 @@ async function combineStatsRanks(){
   
     const user = leaderboard.find(p => p.username === stats.username);
 
-    const combinedStats = {
+    combinedStats = {
       ...stats,
       avgGuessRank: user?.avgGuessRank ?? 'N/A',
       oneshotRank: user?.oneshotRank ?? 'N/A',
       oneshotGames: user?.oneshotGames ?? 'N/A'
     }
     displayStats(combinedStats);
+
   } catch (err) {
     console.error('Stats error:', err);
   }
@@ -556,9 +566,9 @@ async function combineStatsRanks(){
 function displayStats(combinedStats){
     document.getElementById('total-guesses').textContent = `Total Guesses: ${combinedStats.totalGuesses}`;
     document.getElementById('games-played').textContent = `Games Played: ${combinedStats.gamesPlayed}`;
-    document.getElementById('average-guesses').textContent = `Average Guesses: ${combinedStats.avgGuesses} - Global ranking #${combinedStats.avgGuessesRank}`;
+    document.getElementById('average-guesses').textContent = `Average Guesses: ${combinedStats.avgGuesses} - Global ranking #${combinedStats.avgGuessRank}`;
     document.getElementById('oneshots').textContent = `Oneshots: ${combinedStats.oneshots} - Global ranking #${combinedStats.oneshotRank}`;
-    
+    document.getElementById('streak').textContent = `🔥 Current streak: ${combinedStats.streak} 🔥`;
 }
 
 /*
