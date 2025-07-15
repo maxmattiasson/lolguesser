@@ -29,36 +29,43 @@
     <p id="oneshots"></p>
     <p id="streak"></p>
   </div>
-
+  <div class="stat-card">
+    <h2>👑 Leaderboard</h2>
+        <ul id="top-avg">Average Guesses
+            <li class="leaderboard-average" data-rank="1"><span class="medal">🥇</span> <span class="top-username"></span> <span class="top-value"></span></li>
+            <li class="leaderboard-average" data-rank="2"><span class="medal">🥈</span> <span class="top-username"></span> <span class="top-value"></span></li>
+            <li class="leaderboard-average" data-rank="3"><span class="medal">🥉</span> <span class="top-username"></span> <span class="top-value"></span></li>
+        </ul>
+        <ul id="top-oneshot">Oneshots
+            <li class="leaderboard-oneshots" data-rank="1"><span class="medal">🥇</span> <span class="top-username"></span> <span class="top-value"></span></li>
+            <li class="leaderboard-oneshots" data-rank="2"><span class="medal">🥈</span> <span class="top-username"></span> <span class="top-value"></span></li>
+            <li class="leaderboard-oneshots" data-rank="3"><span class="medal">🥉</span> <span class="top-username"></span> <span class="top-value"></span></li>
+        </ul>
+        <ul id="top-gamer">Games Played
+            <li class="leaderboard-games" data-rank="1"><span class="medal">🥇</span> <span class="top-username"></span> <span class="top-value"></span></li>
+            <li class="leaderboard-games" data-rank="2"><span class="medal">🥈</span> <span class="top-username"></span> <span class="top-value"></span></li>
+            <li class="leaderboard-games" data-rank="3"><span class="medal">🥉</span> <span class="top-username"></span> <span class="top-value"></span></li>
+        </ul>
+  </div>
   <div class="stat-card">
     <h2>📈 Games</h2>
-    <p>Last 7 games: 
-      <span class="guess-box green">3</span>
-      <span class="guess-box green">2</span>
-      <span class="guess-box orange">5</span>
-      <span class="guess-box red">6</span>
-      <span class="guess-box green">3</span>
-      <span class="guess-box green">1</span>
-      <span class="guess-box orange">4</span>
-    </p>
+    <p>Last 7 games: <span id="last-7-games"></span></p>
+
     <canvas id="guessesPerDayChart"></canvas>
   </div>
 
   <div class="stat-card">
     <h2>🧪 Fun Facts</h2>
-    <p>You guessed Yasuo 4 times. He was never correct 😅</p>
-    <p>You’re a confirmed Yordle hater. 9 incorrect Teemo guesses.</p>
-    <p>Manaless accuracy: 40%</p>
-    <p>Worst Day: June 28 — 11 guesses for championname🤡 "You were legally blind that day"</p>
+    <p>Coming soon...</p>
   </div>
 
     <div class="stat-card">
     <h2>🎯 Guess Accuracy</h2>
-    <p>Release Year: ±1.8 years</p>
-    <p>Gender: 91%</p>
-    <p>Region: 77%</p>
-    <p>Position: 65%</p>
-    <p>Species: 58%</p>
+    <p id="accuracy-release"><span id="global-release"></span></p>
+    <p id="accuracy-gender"><span id="global-gender"></span></p>
+    <p id="accuracy-region"><span id="global-region"></span></p>
+    <p id="accuracy-position"><span id="global-position"></span></p>
+    <p id="accuracy-species"><span id="global-species"></span></p>
   </div>
 </div>
 

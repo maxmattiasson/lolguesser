@@ -25,6 +25,7 @@ let combinedStats = null;
 
 let isLoggedIn = false;
 
+
 showGame();
 checkLoginStatus();
 combineStatsRanks();
@@ -551,11 +552,13 @@ async function combineStatsRanks(){
     const user = leaderboard.find(p => p.username === stats.username);
 
     combinedStats = {
-      ...stats,
+      stats,
+      leaderboard,
       avgGuessRank: user?.avgGuessRank ?? 'N/A',
       oneshotRank: user?.oneshotRank ?? 'N/A',
       oneshotGames: user?.oneshotGames ?? 'N/A'
     }
+
     displayStats(combinedStats);
 
   } catch (err) {
@@ -564,22 +567,60 @@ async function combineStatsRanks(){
 }
 
 function displayStats(combinedStats){
-    document.getElementById('total-guesses').textContent = `Total Guesses: ${combinedStats.totalGuesses}`;
-    document.getElementById('games-played').textContent = `Games Played: ${combinedStats.gamesPlayed}`;
-    document.getElementById('average-guesses').textContent = `Average Guesses: ${combinedStats.avgGuesses} - Global ranking #${combinedStats.avgGuessRank}`;
-    document.getElementById('oneshots').textContent = `Oneshots: ${combinedStats.oneshots} - Global ranking #${combinedStats.oneshotRank}`;
-    document.getElementById('streak').textContent = `🔥 Current streak: ${combinedStats.streak} 🔥`;
-}
 
-/*
-  username: 'yourName',
-  gamesPlayed: 18,
-  avgGuesses: '2.3',
-  winRate: '0.88',
-  oneshots: 5,
-  avgYearDiff: '1.4',
-  avgGuessRank: 7,
-  oneshotRank: 3,
-  oneshotGames: 5
+  const userStats = combinedStats.stats;
+  const leaderboard = combinedStats.leaderboard;
+
+  // General stats
+    document.getElementById('total-guesses').textContent = `Total Guesses: ${userStats.totalGuesses}`;
+    document.getElementById('games-played').textContent = `Games Played: ${userStats.gamesPlayed}`;
+    document.getElementById('average-guesses').textContent = `Average Guesses: ${userStats.avgGuesses} - Global ranking #${combinedStats.avgGuessRank}`;
+    document.getElementById('oneshots').textContent = `Oneshots: ${userStats.oneshots} - Global ranking #${combinedStats.oneshotRank}`;
+    document.getElementById('streak').textContent = `🔥 Current streak: ${userStats.streak} 🔥`;
+  // Leaderboard stats
+    const topAvgGuess = leaderboard.slice().sort((a, b) => a.avgGuesses - b.avgGuesses).slice(0, 3);
+    const topOneshots = leaderboard.slice().sort((a, b) => b.oneshotGames - a.oneshotGames).slice(0, 3);
+    const topTotalGames = leaderboard.slice().sort((a, b) => b.totalGames - a.totalGames).slice(0, 3);
+
+    topAvgGuess.forEach((player, i) => {
+    const item = document.querySelector(`#top-avg li[data-rank="${i + 1}"]`);
+    item.querySelector('.top-username').textContent = player.username;
+    item.querySelector('.top-value').textContent = ` -  ${player.avgGuesses}`;
+  });
+    topOneshots.forEach((player, i) => {
+    const item = document.querySelector(`#top-oneshot li[data-rank="${i + 1}"]`);
+    item.querySelector('.top-username').textContent = player.username;
+    // FIX THIS
+    item.querySelector('.top-value').textContent = ` -  ${player.oneshots}`;
+  });
+    topTotalGames.forEach((player, i) => {
+    const item = document.querySelector(`#top-gamer li[data-rank="${i + 1}"]`);
+    item.querySelector('.top-username').textContent = player.username;
+    item.querySelector('.top-value').textContent = ` -  ${player.totalGames}`;
+  });
+    // Last 7 games
+ const colors = (n) => {
+  if (n <= 4) return 'green';
+  if (n <= 7) return 'orange';
+  return 'red';
+};
+
+const container = document.getElementById('last-7-games');
+container.innerHTML = '';
+
+userStats.lastGames.forEach(game => {
+  const span = document.createElement('span');
+  span.classList.add('guess-box', colors(game.guessCount));
+  span.textContent = game.guessCount;
+  container.appendChild(span);
+});
+
+  // Accuracy stats
+  document.getElementById('accuracy-release').textContent = `Average year difference per guess +- ${userStats.avgYearDiff} years`;
+  document.getElementById('accuracy-gender').textContent = `Gender: ${userStats.accuracy.gender}% - Global average ${userStats.globalAccuracy.gender}%`;
+  // Region is broken, FIX THIS
+  document.getElementById('accuracy-region').textContent = `Region: ${userStats.accuracy.region}% - Global average ${userStats.globalAccuracy.region}%`;
+  document.getElementById('accuracy-position').textContent = `Position: ${userStats.accuracy.position}% - Global average ${userStats.globalAccuracy.position}%`;
+  document.getElementById('accuracy-species').textContent = `Species: ${userStats.accuracy.species}% - Global average ${userStats.globalAccuracy.species}%`;
+
 }
-*/
