@@ -288,7 +288,7 @@ function showStats(){
   history.pushState({ screen: 'stats' }, '', '?screen=stats');
   document.getElementById('stats-username').textContent = `📊 ${currentUser.charAt(0).toUpperCase()}${currentUser.slice(1)}`;
 
-  importStats();
+  displayStats(combinedStats);
 }
 
 document.addEventListener('keydown', (e) => {
@@ -516,39 +516,60 @@ async function checkEverythingReady() {
 document.getElementById('show-game').addEventListener('click', showGame);
 statsBtn.addEventListener('click', showStats);
 
-async function importStats(){ 
+async function fetchStats(){ 
   try {
     const res = await fetch('https://api.lolgiss.com/api/stats', {
       credentials: 'include'
     });
-
-    const res2 = await fetch('https://api.lolgiss.com/api/leaderboard', {
-      credentials: 'include'
-    });
-
-    const stats = await res.json();
-    const ranks = await res2.json();
-
-    document.getElementById('total-guesses').textContent = `Total Guesses: ${stats.totalGuesses} `;
-    document.getElementById('games-played').textContent = `Games Played: ${stats.gamesPlayed} - Global ranking #${ranks.totalGames}`;
-    document.getElementById('average-guesses').textContent = `Average Guesses: ${stats.avgGuesses} - Global ranking #${ranks.avgGuessesRank}`;
-    document.getElementById('oneshots').textContent = `Oneshots: ${stats.oneshots} - Global ranking #${ranks.oneshotRank}`;
-
+  return res.json();
   } catch (err) {
     console.error('Failed to import stats:', err);
   }
 }
+
+async function fetchLeaderboard(){
+    const res = await fetch('https://api.lolgiss.com/api/leaderboard');
+    return res.json();
+}
+
+async function combineStatsRanks(){
+  try {
+      const [stats, leaderboard] = await Promise.all([
+        fetchStats(),
+        fetchLeaderboard()
+      ]);
+  
+    const user = leaderboard.find(p => p.username === stats.username);
+
+    const combinedStats = {
+      ...stats,
+      avgGuessRank: user?.avgGuessRank ?? 'N/A',
+      oneshotRank: user?.oneshotRank ?? 'N/A',
+      oneshotGames: user?.oneshotGames ?? 'N/A'
+    }
+    displayStats(combinedStats);
+  } catch (err) {
+    console.error('Stats error:', err);
+  }
+}
+
+function displayStats(combinedStats){
+    document.getElementById('total-guesses').textContent = `Total Guesses: ${combinedStats.totalGuesses}`;
+    document.getElementById('games-played').textContent = `Games Played: ${combinedStats.gamesPlayed}`;
+    document.getElementById('average-guesses').textContent = `Average Guesses: ${combinedStats.avgGuesses} - Global ranking #${combinedStats.avgGuessesRank}`;
+    document.getElementById('oneshots').textContent = `Oneshots: ${combinedStats.oneshots} - Global ranking #${combinedStats.oneshotRank}`;
+    
+}
+
 /*
-      username,
-      totalGuesses,
-      gamesPlayed,
-      avgGuesses,
-      oneshots,
-      winRate,
-      avgYearDiff
-        avgGuesses: 1,
-        avgGuessRank: 1,
-        totalGames: 1,
-        oneshotGames: 1,
-        oneshotRank: 1
+  username: 'yourName',
+  gamesPlayed: 18,
+  avgGuesses: '2.3',
+  winRate: '0.88',
+  oneshots: 5,
+  avgYearDiff: '1.4',
+  avgGuessRank: 7,
+  oneshotRank: 3,
+  oneshotGames: 5
+}
 */
