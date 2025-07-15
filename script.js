@@ -519,14 +519,25 @@ statsBtn.addEventListener('click', showStats);
 async function importStats(){ 
   try {
     const res = await fetch('https://api.lolgiss.com/api/stats', {
-      credentials : 'include'
+      credentials: 'include'
     });
-    const stats = await res.json();
-    
-    document.getElementById('total-guesses').textContent = `Total Guesses: ${stats.totalGuesses}`;
-    document.getElementById('games-played').textContent = `Games Played: ${stats.gamesPlayed}`;
-    document.getElementById('average-guesses').textContent = `Average Guesses: ${stats.avgGuesses}`;
 
+    const res2 = await fetch('https://api.lolgiss.com/api/leaderboard', {
+      credentials: 'include'
+    });
+
+    const stats = await res.json();
+    const ranks = await res2.json();
+
+    document.getElementById('total-guesses').textContent = `Total Guesses: ${stats.totalGuesses} `;
+    document.getElementById('games-played').textContent = `Games Played: ${stats.gamesPlayed} - Global ranking #${ranks.totalGames}`;
+    document.getElementById('average-guesses').textContent = `Average Guesses: ${stats.avgGuesses} - Global ranking #${ranks.avgGuessesRank}`;
+    document.getElementById('oneshots').textContent = `Oneshots: ${stats.oneshots} - Global ranking #${ranks.oneshotRank}`;
+
+  } catch (err) {
+    console.error('Failed to import stats:', err);
+  }
+}
 /*
       username,
       totalGuesses,
@@ -535,8 +546,9 @@ async function importStats(){
       oneshots,
       winRate,
       avgYearDiff
+        avgGuesses: 1,
+        avgGuessRank: 1,
+        totalGames: 1,
+        oneshotGames: 1,
+        oneshotRank: 1
 */
-  } catch (err) {
-      console.error('❌ Failed to load stats:', err);
-  }
-}
