@@ -513,6 +513,9 @@ li[data-rank="3"] {
     width: 100%;
     max-width: 600px;
 }
+    .yesterday-img {
+    width: 10vh;
+}
     #guessContainer::-webkit-scrollbar {
     display: none;
 }

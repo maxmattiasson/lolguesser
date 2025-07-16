@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     history.replaceState({ screen: 'game' }, '', '?screen=game');
   } else {
     showOnly('game-container', 'server-status');
-    serverStatus.textContent = 'Please log in for the ultimate experice';
+    serverStatus.textContent = 'Please log in for the ultimate experience';
     serverStatus.style.color = 'lightgreen';
   }
   if (isLoggedIn) {
@@ -274,7 +274,7 @@ function winnerScreen() {
 document.addEventListener("keydown", (e) => {
     if (stopGame) return; 
   if (
-    (e.key === "Enter" && location.search === "?screen=game")
+    (e.key === "Enter" && location.search === "?screen=game" || location.search === "")
   ) {
     confirmInput.click();
   }
