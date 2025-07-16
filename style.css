@@ -200,6 +200,7 @@ body {
     height: 40px;
     width: 100px;
 }
+
 /* 
 ---------------------------------
     USER LOGGED IN SETTINGS BELOW
@@ -209,11 +210,28 @@ body {
 #loggedin-block{
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
     padding-bottom: 20px;
 }
-
-
+.yesterday-img {
+    height: 8vh;
+    border-radius: 10px;
+}
+#yesterday-champ {
+    color: white;
+}
+#friends,
+#stats {
+    font-size: 1.5rem;
+    border-radius: 10px;
+    background: none;
+    border: none;
+}
+#logout {
+    border-radius: 10px;
+    height: 40px;
+}
 /* 
 ---------------------------------
     LOGIN PAGE SETTINGS BELOW
@@ -436,11 +454,11 @@ input {
 }
     .info-cont {
         display: flex;
-        min-width: 50px;
+        min-width: 47px;
         max-height: 50px;
         font-size: 0.7rem;
         border: 0.5px black solid;
-        border-radius: 3px;
+        border-radius: 10px;
         gap: 0px;
         color: rgb(0, 0, 0);
 }

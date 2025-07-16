@@ -44,6 +44,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     await loadPreviousGuesses();
     await combineStatsRanks();
+    await getYesterdayChamp();
 
   } catch (err) {
     isLoggedIn = loggedIn = false;
@@ -91,12 +92,26 @@ async function getChampList(){
     const res = await fetch('champions.json');
     champList = await res.json();
 }
-/*
-window.addEventListener('DOMContentLoaded', async () => {
-  await getChampList();
-  await checkEverythingReady();
-});
-*/
+
+async function getYesterdayChamp(){
+   try { const res = await fetch('https://api.lolgiss.com/api/yesterday');
+    if (!res.ok) return;
+    const data = await res.json();
+
+    const yesterdayImg = document.createElement('img');
+    yesterdayImg.src = data.icon;
+    yesterdayImg.alt = data.name;
+    yesterdayImg.title = data.name;
+    yesterdayImg.classList.add('yesterday-img');
+    const yesterdayDiv = document.getElementById('yesterday-champ');
+    yesterdayDiv.textContent = `Yesterdays champion: `;
+    yesterdayDiv.appendChild(yesterdayImg);
+    console.log(data);
+  } catch (err) {
+    document.getElementById('yesterday-champ').textContent = 'You didnt guess yesterday so you dont get to know'
+  }
+}
+
 async function sendGuess(guessedChamp, row) {
   try {
     const res = await fetch('https://api.lolgiss.com/api/guess', {
