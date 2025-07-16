@@ -215,12 +215,28 @@ body {
     padding-bottom: 20px;
 }
 .yesterday-img {
-    height: 8vh;
+    width: 8vh;
+    height: auto;
     border-radius: 10px;
+    display: block;
 }
+
 #yesterday-champ {
-    color: white;
+  position: relative;
+  display: inline-block;
 }
+#yesterday-text{
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background: rgba(0, 0, 0, 1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
 #friends,
 #stats {
     font-size: 1.5rem;
@@ -229,8 +245,15 @@ body {
     border: none;
 }
 #logout {
-    border-radius: 10px;
+    background-color: #ad81a8;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;    
+    border: 3px black solid;
+    font-size: 0.8rem;
+    border-radius: 50px;
     height: 40px;
+    width: 60px;
 }
 /* 
 ---------------------------------
@@ -339,6 +362,11 @@ input {
     STATS PAGE SETTINGS BELOW
 ---------------------------------
 */
+li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
 #stats-page {
   max-width: 420px;
@@ -346,11 +374,16 @@ input {
   padding: 20px;
   font-family: sans-serif;
   display: none;
+  max-height: 96vh;     
+  overflow-y: auto;   
+  padding-right: 8px;
 }
+
 #stats-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-bottom: 10px    ;
 }
 
 #stats-username {
@@ -370,15 +403,22 @@ input {
     width: 100px;
 }
 .stat-card {
-  background: #f3f3f3;
+  background: #a05c8c;
   padding: 16px 20px;
   margin-bottom: 20px;
   border-radius: 15px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 10px rgba(0,0,0,1   );
+  font-family: 'Inter', sans-serif;
+  text-align: center;
 }
 
 .stat-card h2 {
   margin-bottom: 10px;
+  text-align: center;
+}
+
+#streak{
+    text-align: center;
 }
 
 .guess-box {
@@ -405,12 +445,6 @@ input {
   background-color: #f44336;
 }
 
-#stats-page {
-    max-height: 96vh;     
-    overflow-y: auto;   
-    padding-right: 8px;
-}
-
 #stats-page::-webkit-scrollbar {
     width: 10px;
 }
@@ -426,7 +460,19 @@ input {
     background-color: #363636;
 }
 
-
+li[data-rank="1"] {
+  background-color: gold;
+  font-weight: bold;
+}
+li[data-rank="2"] {
+  background-color: silver;
+}
+li[data-rank="3"] {
+  background-color: #cd7f32; 
+}
+.avg-title {
+    font-weight: bold;
+}
 /* 
 ---------------------------------
     MOBILE SETTINGS BELOW

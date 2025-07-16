@@ -104,7 +104,6 @@ async function getYesterdayChamp(){
     yesterdayImg.title = data.name;
     yesterdayImg.classList.add('yesterday-img');
     const yesterdayDiv = document.getElementById('yesterday-champ');
-    yesterdayDiv.textContent = `Yesterdays champion: `;
     yesterdayDiv.appendChild(yesterdayImg);
     console.log(data);
   } catch (err) {
@@ -591,7 +590,10 @@ function welcomeUser(){
 
 // STATS PAGE SETTINGS BELOW
 
-document.getElementById('show-game').addEventListener('click', showGame);
+document.getElementById('show-game').addEventListener('click', () => {
+  showOnly('game-container', 'loggedin-block');
+  history.replaceState({ screen: 'game' }, '', '?screen=game');
+});
 
 statsBtn.addEventListener('click', async () => {
 
