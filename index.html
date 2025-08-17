@@ -88,14 +88,19 @@
 </div>  
 <div id="server-status">Booting up server ...</div>
 <div class="guess-input">
+    <form id="guess-form" onsubmit="return false;"></form>
     <input type="text" 
     id="guessInput" 
     placeholder="Skriv din gissning ... "  
     autocomplete="off"
     autocorrect="off"
     autocapitalize="off"
-    spellcheck="false">
-    <button id="confirmInput">💦</button>
+    spellcheck="false"
+    inputmode="text"
+    enterkeyhint="go">
+    <button type="button" id="confirmInput">💦</button>
+      </form>
+
 </div>
 <div class="guess-main">
     <div id="champInfo"></div>

@@ -271,11 +271,13 @@ function winnerScreen() {
   });
 }
 
-document.addEventListener("keydown", (e) => {
-    if (stopGame) return; 
-  if (
-    (e.key === "Enter" && location.search === "?screen=game" || location.search === "")
-  ) {
+const guessForm = document.getElementById('guess-form');
+if (guessForm) guessForm.addEventListener('submit', (e) => e.preventDefault());
+
+guessInput.addEventListener('keydown', (e) => {
+  if (stopGame) return;
+  if (e.key === 'Enter') {
+    e.preventDefault();
     confirmInput.click();
   }
 });
