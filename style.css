@@ -1,7 +1,7 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #logo,
@@ -10,67 +10,67 @@
   cursor: default;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
- /*   background-image: url('images/lolguessbg.jpg');
+  /*   background-image: url('images/lolguessbg.jpg');
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat; */
-    height: 100vh;  
-    overflow: hidden;
-    position: relative;
-
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 .guess-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .champ-icon {
-    height: 100px;
-    width: 100px;
-    border-radius: 10px;
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
 }
 
 .info-cont {
-    height: 100px;
-    width: 100px;
-    display: flex;
-    font-size: 1rem;
-    border: 3px black solid;
-    border-radius: 20px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    opacity: 0;
-    transition: opacity 0.5s ease-in;
-    color: black;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  font-size: 1rem;
+  border: 3px black solid;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+  color: black;
 }
 .info-cont:hover {
   border: none;
 }
 
 .guess-row {
-    display: flex;
-    max-width: 900px;
-    flex-flow: row wrap;
-    align-items: center;
-    gap: 5px;
-    padding: 5px;
-    background-color: black;
+  display: flex;
+  max-width: 900px;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  background-color: black;
 }
 .guess-input {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  gap: 10px;
 }
 
 .background-blur {
@@ -79,24 +79,23 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('images/lolguessbg.jpg');
+  background-image: url("images/lolguessbg.jpg");
   background-size: cover;
   background-position: top center;
-  filter: blur(1px) brightness(0.7);  
-  z-index: -1;  
+  filter: blur(1px) brightness(0.7);
+  z-index: -1;
 }
 
 .headers {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
 }
 
-
 #spacer {
-    height: 40px;
+  height: 40px;
 }
 
 .dontsueme {
@@ -111,73 +110,73 @@ body {
 }
 
 #login {
-    position: absolute;
-    right: 20px;   
+  position: absolute;
+  right: 20px;
 }
 
 #confirmInput {
-    border: 10px black double;
-    outline: none;
-    background: #AE75A7;
-    border-radius: 50%;
-    height: 80px;
-    width: 80px;
-    font-size: 2rem;
+  border: 10px black double;
+  outline: none;
+  background: #ae75a7;
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  font-size: 2rem;
+  cursor: pointer;
 }
 #confirmInput:hover {
-    background: #ad81a8;
+  background: #ad81a8;
 }
 
 #guessInput {
-    height: 40px;
-    padding: 10px;
-    border: 3px black solid;
-    border-radius: 5px;
-    box-shadow: none;
+  height: 40px;
+  padding: 10px;
+  border: 3px black solid;
+  border-radius: 5px;
+  box-shadow: none;
 }
 #guessInput:focus {
-    outline: none;
-    border: 3px black solid;
-    box-shadow: 0 0 5px 3px #69EAFF 
+  outline: none;
+  border: 3px black solid;
+  box-shadow: 0 0 5px 3px #69eaff;
 }
 
 #logo {
   font-size: 4rem;
   color: white;
-    -webkit-text-stroke: 3px black;
+  -webkit-text-stroke: 3px black;
   font-family: "Luckiest Guy";
   font-weight: 400;
   font-style: normal;
-
 }
 
 #guessContainer {
-    max-height: 60vh;     
-    overflow-y: auto;   
-    padding-right: 8px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 8px;
 }
 
 #guessContainer::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
-        
+
 #guessContainer::-webkit-scrollbar-track {
-    border-radius: 8px;
-    background-color: #e7e7e72d;
-    border: 1px solid #363636;
+  border-radius: 8px;
+  background-color: #e7e7e72d;
+  border: 1px solid #363636;
 }
-        
+
 #guessContainer::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: #363636;
+  border-radius: 8px;
+  background-color: #363636;
 }
 
 .animate-in {
-    opacity: 1;
+  opacity: 1;
 }
 
 #server-status {
-    text-align: center;
+  text-align: center;
 }
 
 .arrowup {
@@ -189,16 +188,17 @@ body {
 }
 
 #login {
-    background-color: #ad81a8;
-    color: white;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;    
-    border: 1px black solid;
-    font-size: 1rem;
-    border-radius: 50px;
-    margin-bottom: 5px;
-    height: 40px;
-    width: 100px;
+  background-color: #ad81a8;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  border: 1px black solid;
+  font-size: 1rem;
+  border-radius: 50px;
+  margin-bottom: 5px;
+  height: 40px;
+  width: 100px;
+  cursor: pointer;
 }
 
 /* 
@@ -207,25 +207,25 @@ body {
 ---------------------------------
 */
 
-#loggedin-block{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 20px;
+#loggedin-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 20px;
 }
 .yesterday-img {
-    width: 8vh;
-    height: auto;
-    border-radius: 10px;
-    display: block;
+  width: 8vh;
+  height: auto;
+  border-radius: 10px;
+  display: block;
 }
 
 #yesterday-champ {
   position: relative;
   display: inline-block;
 }
-#yesterday-text{
+#yesterday-text {
   position: absolute;
   bottom: 4px;
   left: 50%;
@@ -239,47 +239,47 @@ body {
 
 #friends,
 #stats {
-    font-size: 1.5rem;
-    border-radius: 10px;
-    background: none;
-    border: none;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  background: none;
+  border: none;
 }
 #logout {
-    background-color: #ad81a8;
-    color: white;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;    
-    border: 3px black solid;
-    font-size: 0.8rem;
-    border-radius: 50px;
-    height: 40px;
-    width: 60px;
+  background-color: #ad81a8;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  border: 3px black solid;
+  font-size: 0.8rem;
+  border-radius: 50px;
+  height: 40px;
+  width: 60px;
 }
 /* 
 ---------------------------------
     LOGIN PAGE SETTINGS BELOW
 ---------------------------------
 */
-#login-wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
+#login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
 }
 
 #login-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 300px;
-    height: 300px;
-    background-color:rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  gap: 5px;
 }
 #login-page button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 form {
@@ -287,14 +287,14 @@ form {
 }
 
 #login-head {
-    font-family: "Luckiest Guy";
-    color: white;
-    font-size: 2rem;
+  font-family: "Luckiest Guy";
+  color: white;
+  font-size: 2rem;
 }
 
 input {
-    padding-left: 5px;
-    border-radius: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
 }
 
 #password-wrap {
@@ -310,51 +310,51 @@ input {
   padding-left: 5px;
   border-radius: 5px;
 }
-#eye, 
+#eye,
 #login-eye {
-    width: 20px;
-    height: 20px;
-    all: unset;
-    flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  all: unset;
+  flex-shrink: 0;
 }
 
-.error-message{
-    visibility: hidden;
-    color: red;
-    font-weight: 800;
-    text-align: center;
-    height: 40px;
+.error-message {
+  visibility: hidden;
+  color: red;
+  font-weight: 800;
+  text-align: center;
+  height: 40px;
 }
 
 #sign-log {
-    display: inline-block;
-    border: none;
-    background-color: transparent;
-    color: rgb(243, 243, 243);
-    text-decoration-line: underline;
-    font-size: 0.8rem;
+  display: inline-block;
+  border: none;
+  background-color: transparent;
+  color: rgb(243, 243, 243);
+  text-decoration-line: underline;
+  font-size: 0.8rem;
 }
 
-#return-game{
-    background-color: #ad81a8;
-    border: 2px black solid;
-    border-radius: 50px;
-    margin-bottom: 5px;
-    height: 40px;
-    width: 120px;
+#return-game {
+  background-color: #ad81a8;
+  border: 2px black solid;
+  border-radius: 50px;
+  margin-bottom: 5px;
+  height: 40px;
+  width: 120px;
 }
 
 #login-btn {
-    background-color:#69EAFF;  
-    border: 2px black solid;
-    border-radius: 50px;
-    margin-bottom: 5px;
-    height: 25px;
-    width: 75px;
+  background-color: #69eaff;
+  border: 2px black solid;
+  border-radius: 50px;
+  margin-bottom: 5px;
+  height: 25px;
+  width: 75px;
 }
 
-#remember-me{
-    color: rgb(255, 255, 255);
+#remember-me {
+  color: rgb(255, 255, 255);
 }
 
 /* 
@@ -363,9 +363,9 @@ input {
 ---------------------------------
 */
 li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 #stats-page {
@@ -374,41 +374,41 @@ li {
   padding: 20px;
   font-family: sans-serif;
   display: none;
-  max-height: 96vh;     
-  overflow-y: auto;   
+  max-height: 96vh;
+  overflow-y: auto;
   padding-right: 8px;
 }
 
 #stats-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-bottom: 10px    ;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 10px;
 }
 
 #stats-username {
-    font-family: 'Luckiest Guy', sans-serif;
-    color: white;
-    -webkit-text-stroke: 1px black;
+  font-family: "Luckiest Guy", sans-serif;
+  color: white;
+  -webkit-text-stroke: 1px black;
 }
 #show-game {
-    background-color: #ad81a8;
-    color: white;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;    
-    border: 1px black solid;
-    font-size: 0.8rem;
-    border-radius: 50px;
-    height: 40px;
-    width: 100px;
+  background-color: #ad81a8;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  border: 1px black solid;
+  font-size: 0.8rem;
+  border-radius: 50px;
+  height: 40px;
+  width: 100px;
 }
 .stat-card {
   background: #a05c8c;
   padding: 16px 20px;
   margin-bottom: 20px;
   border-radius: 15px;
-  box-shadow: 0 5px 10px rgba(0,0,0,1   );
-  font-family: 'Inter', sans-serif;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+  font-family: "Inter", sans-serif;
   text-align: center;
 }
 
@@ -417,8 +417,8 @@ li {
   text-align: center;
 }
 
-#streak{
-    text-align: center;
+#streak {
+  text-align: center;
 }
 
 .guess-box {
@@ -446,18 +446,18 @@ li {
 }
 
 #stats-page::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
-        
+
 #stats-page::-webkit-scrollbar-track {
-    border-radius: 8px;
-    background-color: #e7e7e72d;
-    border: 1px solid #363636;
+  border-radius: 8px;
+  background-color: #e7e7e72d;
+  border: 1px solid #363636;
 }
-        
+
 #stats-page::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: #363636;
+  border-radius: 8px;
+  background-color: #363636;
 }
 
 li[data-rank="1"] {
@@ -468,10 +468,10 @@ li[data-rank="2"] {
   background-color: silver;
 }
 li[data-rank="3"] {
-  background-color: #cd7f32; 
+  background-color: #cd7f32;
 }
 .avg-title {
-    font-weight: bold;
+  font-weight: bold;
 }
 /* 
 ---------------------------------
@@ -480,63 +480,91 @@ li[data-rank="3"] {
 */
 
 @media (max-width: 700px) {
-    #guessContainer {
-    max-width: 98vw;     
-    overflow-x: auto;   
+  #guessContainer {
+    max-width: 98vw;
+    overflow-x: auto;
     padding-right: 8px;
-}
-    .guess-row {
-        background-color: transparent;
-        max-width: 98vw;
-        flex-wrap: nowrap;
-        gap: 0px;
-        padding-left: 0px;
-        padding-bottom: 10px;
-}
-    .champ-icon {
-        height: 6vh;
-        width: 10vw;
-        padding-right: 0px;
-}
-    .info-cont {
-        display: flex;
-        min-width: 47px;
-        max-height: 50px;
-        font-size: 0.7rem;
-        border: 0.5px black solid;
-        border-radius: 10px;
-        gap: 0px;
-        color: rgb(0, 0, 0);
-}
-    .guess-input {
+  }
+  .guess-row {
+    background-color: transparent;
+    max-width: 98vw;
+    flex-wrap: nowrap;
+    gap: 0px;
+    padding-left: 0px;
+    padding-bottom: 10px;
+  }
+  .champ-icon {
+    height: 6vh;
+    width: 10vw;
+    padding-right: 0px;
+  }
+  .info-cont {
+    display: flex;
+    min-width: 47px;
+    max-height: 50px;
+    font-size: 0.7rem;
+    border: 0.5px black solid;
+    border-radius: 10px;
+    gap: 0px;
+    color: rgb(0, 0, 0);
+  }
+  .guess-input {
     font-size: 16px;
     width: 100%;
     max-width: 600px;
-}
-    .yesterday-img {
+  }
+  .yesterday-img {
     width: 10vh;
-}
-    #guessContainer::-webkit-scrollbar {
+  }
+  #guessContainer::-webkit-scrollbar {
     display: none;
-}
-    #stats-page::-webkit-scrollbar {
+  }
+  #stats-page::-webkit-scrollbar {
     display: none;
-}
-    #login{
-        width: 60px;
-        font-size: 0.6rem;
-}
-    html, body {
+  }
+  #login {
+    width: 60px;
+    font-size: 0.6rem;
+  }
+  html,
+  body {
     overflow-y: auto !important;
     height: auto;
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
-} 
-    body * {
+  }
+  body * {
     touch-action: auto;
-    }
-    button {
-        color: black;
-    }
+  }
+  button {
+    color: black;
+  }
 }
 
+.input-wrapper {
+  position: relative;
+}
+
+#suggestions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+#suggestions li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+#suggestions li:hover {
+  background: #eee;
+}

@@ -1,139 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Lolgiss</title>
-    <link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 36 36%22><text x=%220%22 y=%2232%22 font-size=%2230%22>💦</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 36 36%22><text x=%220%22 y=%2232%22 font-size=%2230%22>💦</text></svg>"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-blur"></div>
 
-</head>
-<body>
-<div class="background-blur"></div>
-
-<div id="stats-page" style="display: none">
-    <div id="stats-header">
+    <div id="stats-page" style="display: none">
+      <div id="stats-header">
         <h1 id="stats-username"></h1>
         <button id="show-game">Back to game</button>
- </div>
+      </div>
 
-  <div class="stat-card">
-    <h2>General</h2>
-    <p id="streak"></p>
-    <p id="total-guesses"></p>
-    <p id="games-played"></p>
-    <p id="average-guesses"></p>
-    <p id="oneshots"></p>
-
-  </div>
-  <div class="stat-card">
-    <h2>👑 Leaderboard 👑</h2>
-        <ul id="top-avg"><p class="avg-title">Average Guesses</p>
-            <li class="leaderboard-average" data-rank="1"><span class="medal">🥇</span> <span class="top-username"></span> <span class="top-value"></span></li>
-            <li class="leaderboard-average" data-rank="2"><span class="medal">🥈</span> <span class="top-username"></span> <span class="top-value"></span></li>
-            <li class="leaderboard-average" data-rank="3"><span class="medal">🥉</span> <span class="top-username"></span> <span class="top-value"></span></li>
+      <div class="stat-card">
+        <h2>General</h2>
+        <p id="streak"></p>
+        <p id="total-guesses"></p>
+        <p id="games-played"></p>
+        <p id="average-guesses"></p>
+        <p id="oneshots"></p>
+      </div>
+      <div class="stat-card">
+        <h2>👑 Leaderboard 👑</h2>
+        <ul id="top-avg">
+          <p class="avg-title">Average Guesses</p>
+          <li class="leaderboard-average" data-rank="1">
+            <span class="medal">🥇</span> <span class="top-username"></span>
+            <span class="top-value"></span>
+          </li>
+          <li class="leaderboard-average" data-rank="2">
+            <span class="medal">🥈</span> <span class="top-username"></span>
+            <span class="top-value"></span>
+          </li>
+          <li class="leaderboard-average" data-rank="3">
+            <span class="medal">🥉</span> <span class="top-username"></span>
+            <span class="top-value"></span>
+          </li>
         </ul>
-        <ul id="top-oneshot"><p class="avg-title">Oneshots</p>
-            <li class="leaderboard-oneshots" data-rank="1"><span class="medal">🥇</span> <span class="top-username"></span> <span class="top-value"></span></li>
-            <li class="leaderboard-oneshots" data-rank="2"><span class="medal">🥈</span> <span class="top-username"></span> <span class="top-value"></span></li>
-            <li class="leaderboard-oneshots" data-rank="3"><span class="medal">🥉</span> <span class="top-username"></span> <span class="top-value"></span></li>
+        <ul id="top-oneshot">
+          <p class="avg-title">Oneshots</p>
+          <li class="leaderboard-oneshots" data-rank="1">
+            <span class="medal">🥇</span> <span class="top-username"></span>
+            <span class="top-value"></span>
+          </li>
+          <li class="leaderboard-oneshots" data-rank="2">
+            <span class="medal">🥈</span> <span class="top-username"></span>
+            <span class="top-value"></span>
+          </li>
+          <li class="leaderboard-oneshots" data-rank="3">
+            <span class="medal">🥉</span> <span class="top-username"></span>
+            <span class="top-value"></span>
+          </li>
         </ul>
-        <ul id="top-gamer"><p class="avg-title">Games Played</p>
-            <li class="leaderboard-games" data-rank="1"><span class="medal">🥇</span> <span class="top-username"></span> <span class="top-value"></span></li>
-            <li class="leaderboard-games" data-rank="2"><span class="medal">🥈</span> <span class="top-username"></span> <span class="top-value"></span></li>
-            <li class="leaderboard-games" data-rank="3"><span class="medal">🥉</span> <span class="top-username"></span> <span class="top-value"></span></li>
+        <ul id="top-gamer">
+          <p class="avg-title">Games Played</p>
+          <li class="leaderboard-games" data-rank="1">
+            <span class="medal">🥇</span> <span class="top-username"></span>
+            <span class="top-value"></span>
+          </li>
+          <li class="leaderboard-games" data-rank="2">
+            <span class="medal">🥈</span> <span class="top-username"></span>
+            <span class="top-value"></span>
+          </li>
+          <li class="leaderboard-games" data-rank="3">
+            <span class="medal">🥉</span> <span class="top-username"></span>
+            <span class="top-value"></span>
+          </li>
         </ul>
-  </div>
-  <div class="stat-card">
-    <h2>📈 Games 📈</h2>
-    <p>Last 7 games: <span id="last-7-games"></span></p>
+      </div>
+      <div class="stat-card">
+        <h2>📈 Games 📈</h2>
+        <p>Last 7 games: <span id="last-7-games"></span></p>
 
-    <canvas id="guessesPerDayChart"></canvas>
-  </div>
+        <canvas id="guessesPerDayChart"></canvas>
+      </div>
 
-  <div class="stat-card">
-    <h2>🧪 Fun Facts 🧪</h2>
-    <p>Coming soon...</p>
-  </div>
+      <div class="stat-card">
+        <h2>🧪 Fun Facts 🧪</h2>
+        <p>Coming soon...</p>
+      </div>
 
-    <div class="stat-card">
-    <h2>🎯 Guess Accuracy 🎯</h2>
-    <p id="accuracy-release"><span id="global-release"></span></p>
-    <p id="accuracy-gender"><span id="global-gender"></span></p>
-    <p id="accuracy-region"><span id="global-region"></span></p>
-    <p id="accuracy-position"><span id="global-position"></span></p>
-    <p id="accuracy-species"><span id="global-species"></span></p>
-  </div>
-</div>
+      <div class="stat-card">
+        <h2>🎯 Guess Accuracy 🎯</h2>
+        <p id="accuracy-release"><span id="global-release"></span></p>
+        <p id="accuracy-gender"><span id="global-gender"></span></p>
+        <p id="accuracy-region"><span id="global-region"></span></p>
+        <p id="accuracy-position"><span id="global-position"></span></p>
+        <p id="accuracy-species"><span id="global-species"></span></p>
+      </div>
+    </div>
 
-<div id="game-container" style="display: none">
-<div class="headers">
- <h1 id="logo">Lolgiss</h1>
- <button id="login">LOGIN</button>
- <div id="spacer"></div>
-</div>
-<div id="loggedin-block" style="display: none"> 
-    <button id="friends">❤</button>
-    <button id="stats">📊</button>
-    <div id="display-username"></div>
+    <div id="game-container" style="display: none">
+      <div class="headers">
+        <h1 id="logo">Lolgiss</h1>
+        <button id="login">LOGIN</button>
+        <div id="spacer"></div>
+      </div>
+      <div id="loggedin-block" style="display: none">
+        <button id="friends">❤</button>
+        <button id="stats">📊</button>
+        <div id="display-username"></div>
         <div id="yesterday-champ">
-            <div id="yesterday-text">Yesterday</div>
+          <div id="yesterday-text">Yesterday</div>
         </div>
-    <button id="logout">Log out</button>
-    
-</div>  
-<div id="server-status">Booting up server ...</div>
-<div class="guess-input">
-    <form id="guess-form" onsubmit="return false;"></form>
-    <input type="text" 
-    id="guessInput" 
-    placeholder="Skriv din gissning ... "  
-    autocomplete="off"
-    autocorrect="off"
-    autocapitalize="off"
-    spellcheck="false"
-    inputmode="text"
-    enterkeyhint="go">
-    <button type="button" id="confirmInput">💦</button>
-      </form>
-
-</div>
-<div class="guess-main">
-    <div id="champInfo"></div>
-    <div id="guessContainer"></div>
-</div>
-</div>
-<div id="login-wrapper" style="display: none">
-    <div id="login-page">
+        <button id="logout">Log out</button>
+      </div>
+      <div id="server-status">Booting up server ...</div>
+      <div class="guess-input">
+        <form id="guess-form" onsubmit="return false;">
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="guessInput"
+              placeholder="Skriv din gissning ... "
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              inputmode="text"
+              enterkeyhint="go"
+            />
+            <ul id="suggestions"></ul>
+          </div>
+          <button type="button" id="confirmInput">💦</button>
+        </form>
+      </div>
+      <div class="guess-main">
+        <div id="champInfo"></div>
+        <div id="guessContainer"></div>
+      </div>
+    </div>
+    <div id="login-wrapper" style="display: none">
+      <div id="login-page">
         <div id="login-head"></div>
         <form id="form-login">
-        <input type="text" id="username-field" name="username" autocomplete="username" placeholder="Username">
-            <div id="password-wrap">
-                <input type="password" id="signup-password" name="new-password" autocomplete="new-password" placeholder="Password"> <button id="eye" type="button" tabindex="-1">👁️</button>
-            </div>          
-                <input type="password" id="signup-password2" name="new-password" autocomplete="new-password" placeholder="Repeat Password">
+          <input
+            type="text"
+            id="username-field"
+            name="username"
+            autocomplete="username"
+            placeholder="Username"
+          />
+          <div id="password-wrap">
+            <input
+              type="password"
+              id="signup-password"
+              name="new-password"
+              autocomplete="new-password"
+              placeholder="Password"
+            />
+            <button id="eye" type="button" tabindex="-1">👁️</button>
+          </div>
+          <input
+            type="password"
+            id="signup-password2"
+            name="new-password"
+            autocomplete="new-password"
+            placeholder="Repeat Password"
+          />
 
-            <div id="password-wrap">
-                <input type="password" id="login-password" name="current-password" autocomplete="current-password" placeholder="Password"><button id="login-eye" type="button" tabindex="-1">👁️</button>
-            </div>
-            <label id="remember-me">
-                <input type="checkbox" id="rememberMe">Keep me logged in</label>
-            <button id="login-btn">Submit</button>
-            </form>
-            <div class="error-message"></div>
-
+          <div id="password-wrap">
+            <input
+              type="password"
+              id="login-password"
+              name="current-password"
+              autocomplete="current-password"
+              placeholder="Password"
+            /><button id="login-eye" type="button" tabindex="-1">👁️</button>
+          </div>
+          <label id="remember-me">
+            <input type="checkbox" id="rememberMe" />Keep me logged in</label
+          >
+          <button id="login-btn">Submit</button>
+        </form>
+        <div class="error-message"></div>
 
         <button id="sign-log"></button>
         <button id="return-game">Back to game</button>
+      </div>
     </div>
-</div>
 
-<p class="dontsueme">“League of Legends assets are © Riot Games. This is a fan-made project not affiliated with Riot Games.”</p>
-<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-<script src="script.js"></script>
-</body>
+    <p class="dontsueme">
+      “League of Legends assets are © Riot Games. This is a fan-made project not
+      affiliated with Riot Games.”
+    </p>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
