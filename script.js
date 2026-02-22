@@ -780,6 +780,7 @@ guessInput.addEventListener("input", () => {
     li.style.display = "flex";
     li.style.alignItems = "center";
     li.style.gap = "6px";
+    li.style.zIndex = "9999";
 
     const img = document.createElement("img");
     img.src = champ.icon;
